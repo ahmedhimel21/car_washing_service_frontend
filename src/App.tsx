@@ -1,7 +1,7 @@
 function App() {
   return (
     <>
-      <h1>Assignment 05</h1>
+      <h1>Car Washing Service</h1>
     </>
   );
 }
