@@ -1,11 +1,7 @@
 import { Layout, Menu } from "antd";
+import { items } from "./MainLayout";
 
 const { Header, Content } = Layout;
-
-const items = new Array(3).fill(null).map((_, index) => ({
-  key: index + 1,
-  label: `nav ${index + 1}`,
-}));
 
 const AuthLayout = () => {
   return (

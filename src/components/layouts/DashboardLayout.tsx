@@ -1,5 +1,5 @@
 import { Layout, Menu } from "antd";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { adminSidebarItems } from "../../routes/adminRoutes";
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -18,14 +18,15 @@ const DashboardLayout = () => {
       >
         <div
           style={{
-            color: "white",
             height: "4rem",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-          <h1>Logo</h1>
+          <NavLink to="/">
+            <h1>Logo</h1>
+          </NavLink>
         </div>
         <Menu
           theme="dark"
