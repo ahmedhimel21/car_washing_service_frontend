@@ -1,72 +1,32 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import DashboardLayout from "../components/layouts/DashboardLayout";
-import AdminDashboard from "../pages/admin/AdminDashboard";
-import UserDashboard from "../pages/user/UserDashboard";
 import AuthLayout from "../components/layouts/AuthLayout";
-import Login from "../pages/Auth/Login";
-import Register from "../pages/Auth/Register";
-import Home from "../pages/Home";
-import Services from "../pages/Services";
-import ServiceDetails from "../pages/ServiceDetails";
-import Booking from "../pages/Booking";
+import { adminRoutes } from "./adminRoutes";
+import { userRoutes } from "./userRoutes";
+import { authRoutes } from "./authRoutes";
+import { publicRoutes } from "./publicRoutes";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
-    children: [
-      {
-        index: true,
-        element: <Home></Home>,
-      },
-      {
-        path: "services",
-        element: <Services></Services>,
-      },
-      {
-        path: "services/:id",
-        element: <ServiceDetails></ServiceDetails>,
-      },
-      {
-        path: "booking",
-        element: <Booking></Booking>,
-      },
-    ],
+    children: publicRoutes,
   },
   {
     path: "/admin",
     element: <DashboardLayout></DashboardLayout>,
-    children: [
-      {
-        path: "dashboard",
-        element: <AdminDashboard></AdminDashboard>,
-      },
-    ],
+    children: adminRoutes,
   },
   {
     path: "/user",
     element: <DashboardLayout></DashboardLayout>,
-    children: [
-      {
-        path: "dashboard",
-        element: <UserDashboard></UserDashboard>,
-      },
-    ],
+    children: userRoutes,
   },
   {
     path: "auth",
     element: <AuthLayout></AuthLayout>,
-    children: [
-      {
-        path: "login",
-        element: <Login></Login>,
-      },
-      {
-        path: "register",
-        element: <Register></Register>,
-      },
-    ],
+    children: authRoutes,
   },
 ]);
 

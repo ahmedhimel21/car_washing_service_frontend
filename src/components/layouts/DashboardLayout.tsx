@@ -1,23 +1,21 @@
-import { Layout, Menu } from "antd";
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
-import { createElement } from "react";
+import { Layout, Menu, MenuProps } from "antd";
 import { Outlet } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
 
-const items = [
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  UserOutlined,
-].map((icon, index) => ({
-  key: String(index + 1),
-  icon: createElement(icon),
-  label: `nav ${index + 1}`,
-}));
+const items: MenuProps["items"] = [
+  {
+    key: "1",
+    label: "Home",
+  },
+  {
+    key: "2",
+    label: "Dashboard",
+  },
+  {
+    key: "3",
+    label: "Service Management",
+  },
+];
 
 const DashboardLayout = () => {
   return (
