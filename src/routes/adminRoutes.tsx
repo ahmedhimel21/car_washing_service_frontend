@@ -3,10 +3,16 @@ import AdminDashboard from "../pages/admin/AdminDashboard";
 import ServiceManagement from "../pages/admin/ServiceManagement";
 import SlotManagement from "../pages/admin/SlotManagement";
 import UserManagement from "../pages/admin/UserManagement";
+import { NavLink } from "react-router-dom";
 
 type TAdminRoute = {
   path: string;
   element: ReactNode;
+};
+
+type TAdminSidebarRoutes = {
+  key: string;
+  label: ReactNode;
 };
 
 const adminPaths = [
@@ -41,3 +47,16 @@ export const adminRoutes = adminPaths.reduce((acc: TAdminRoute[], item) => {
   }
   return acc;
 }, []);
+
+export const adminSidebarItems = adminPaths.reduce(
+  (acc: TAdminSidebarRoutes[], item) => {
+    if (item.path && item.name) {
+      acc.push({
+        key: item.name,
+        label: <NavLink to={`/admin/${item.path}`}>{item.name}</NavLink>,
+      });
+    }
+    return acc;
+  },
+  []
+);
