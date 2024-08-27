@@ -1,9 +1,28 @@
 import { Layout, Menu } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
-import { adminSidebarItems } from "../../routes/adminRoutes";
+import { adminPaths } from "../../routes/adminRoutes";
+import { sidebarItemsGenerator } from "../../utils/sidebarItemsGenerator";
+import { userPaths } from "../../routes/userRoutes";
 const { Header, Content, Footer, Sider } = Layout;
 
+export const userRole = {
+  ADMIN: "admin",
+  USER: "user",
+};
+
 const DashboardLayout = () => {
+  const role = "user";
+  let sidebarItems;
+  switch (role) {
+    case userRole.ADMIN:
+      sidebarItems = sidebarItemsGenerator(adminPaths, userRole.ADMIN);
+      break;
+    case userRole.USER:
+      sidebarItems = sidebarItemsGenerator(userPaths, userRole.USER);
+      break;
+    default:
+      break;
+  }
   return (
     <Layout style={{ height: "100vh" }}>
       <Sider
@@ -32,7 +51,7 @@ const DashboardLayout = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["4"]}
-          items={adminSidebarItems}
+          items={sidebarItems}
         />
       </Sider>
       <Layout>

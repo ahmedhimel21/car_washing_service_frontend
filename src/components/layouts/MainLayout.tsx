@@ -1,5 +1,6 @@
 import { Layout, Menu, MenuProps } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
+import { userRole } from "./DashboardLayout";
 
 const { Header, Content, Footer } = Layout;
 
@@ -18,7 +19,7 @@ export const items: MenuProps["items"] = [
   },
   {
     key: "Dashboard",
-    label: <NavLink to="/admin/dashboard">Dashboard</NavLink>,
+    label: <NavLink to={`/${userRole.USER}/dashboard`}>Dashboard</NavLink>, //todo
   },
   {
     key: "Login",
@@ -29,7 +30,12 @@ export const items: MenuProps["items"] = [
 const MainLayout = () => {
   return (
     <Layout style={{ height: "100vh" }}>
-      <Header style={{ display: "flex", alignItems: "center" }}>
+      <Header
+        style={{
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
         <div className="demo-logo" />
         <Menu
           theme="dark"

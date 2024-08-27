@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-export type TAdminSidebarRoutes = {
+export type TSidebarRoutes = {
   key: string;
   label: ReactNode;
 };
