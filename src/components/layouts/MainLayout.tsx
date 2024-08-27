@@ -45,7 +45,13 @@ const MainLayout = () => {
             alignItems: "center",
           }}
         >
-          <p style={{ color: "white", marginRight: "5px" }}>
+          <p
+            style={{
+              color: "white",
+              marginRight: "5px",
+              fontWeight: "bold",
+            }}
+          >
             Hi, {`Himel Ahmed`}
           </p>
           <img

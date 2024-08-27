@@ -1,13 +1,7 @@
-import { ReactNode } from "react";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 
-type TAuthRoutes = {
-  path: string;
-  element: ReactNode;
-};
-
-const authPaths = [
+export const authPaths = [
   {
     name: "Login",
     path: "login",
@@ -19,13 +13,3 @@ const authPaths = [
     element: <Register></Register>,
   },
 ];
-
-export const authRoutes = authPaths.reduce((acc: TAuthRoutes[], item) => {
-  if (item.path && item.element) {
-    acc.push({
-      path: item.path,
-      element: item.element,
-    });
-  }
-  return acc;
-}, []);

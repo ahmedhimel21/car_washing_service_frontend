@@ -1,21 +1,11 @@
-import { ReactNode } from "react";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import ServiceManagement from "../pages/admin/ServiceManagement";
 import SlotManagement from "../pages/admin/SlotManagement";
 import UserManagement from "../pages/admin/UserManagement";
 import { NavLink } from "react-router-dom";
+import { TAdminSidebarRoutes } from "../types";
 
-type TAdminRoute = {
-  path: string;
-  element: ReactNode;
-};
-
-type TAdminSidebarRoutes = {
-  key: string;
-  label: ReactNode;
-};
-
-const adminPaths = [
+export const adminPaths = [
   {
     name: "Dashboard",
     path: "dashboard",
@@ -37,16 +27,6 @@ const adminPaths = [
     element: <UserManagement></UserManagement>,
   },
 ];
-
-export const adminRoutes = adminPaths.reduce((acc: TAdminRoute[], item) => {
-  if (item.path && item.element) {
-    acc.push({
-      path: item.path,
-      element: item.element,
-    });
-  }
-  return acc;
-}, []);
 
 export const adminSidebarItems = adminPaths.reduce(
   (acc: TAdminSidebarRoutes[], item) => {

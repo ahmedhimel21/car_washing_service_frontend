@@ -2,31 +2,32 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import DashboardLayout from "../components/layouts/DashboardLayout";
 import AuthLayout from "../components/layouts/AuthLayout";
-import { adminRoutes } from "./adminRoutes";
-import { userRoutes } from "./userRoutes";
-import { authRoutes } from "./authRoutes";
-import { publicRoutes } from "./publicRoutes";
+import { adminPaths } from "./adminRoutes";
+import { userPaths } from "./userRoutes";
+import { authPaths } from "./authRoutes";
+import { publicPaths } from "./publicRoutes";
+import { routesGenerator } from "../utils/routesGenerator";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
-    children: publicRoutes,
+    children: routesGenerator(publicPaths),
   },
   {
     path: "/admin",
     element: <DashboardLayout></DashboardLayout>,
-    children: adminRoutes,
+    children: routesGenerator(adminPaths),
   },
   {
     path: "/user",
     element: <DashboardLayout></DashboardLayout>,
-    children: userRoutes,
+    children: routesGenerator(userPaths),
   },
   {
     path: "auth",
     element: <AuthLayout></AuthLayout>,
-    children: authRoutes,
+    children: routesGenerator(authPaths),
   },
 ]);
 
