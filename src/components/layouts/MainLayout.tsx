@@ -1,7 +1,8 @@
-import { Layout, Menu, MenuProps } from "antd";
+import { Button, Layout, Menu, MenuProps } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
 import { userRole } from "./DashboardLayout";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { logout } from "../../redux/features/auth/authSlice";
 
 const { Header, Content, Footer } = Layout;
 
@@ -22,14 +23,15 @@ export const items: MenuProps["items"] = [
     key: "Dashboard",
     label: <NavLink to={`/${userRole.USER}/dashboard`}>Dashboard</NavLink>, //todo
   },
-  {
-    key: "Login",
-    label: <NavLink to="/auth/login">Login</NavLink>,
-  },
 ];
 
 const MainLayout = () => {
   const name = useAppSelector((state) => state.auth.user?.name);
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
   return (
     <Layout style={{ height: "100vh" }}>
       <Header
@@ -46,28 +48,31 @@ const MainLayout = () => {
           items={items}
           style={{ flex: 1, minWidth: 0 }}
         />
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <p
+        {name ? (
+          <div
             style={{
-              color: "white",
-              marginRight: "5px",
-              fontWeight: "bold",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "10px",
             }}
           >
-            Hi, {name}
-          </p>
-          <img
-            style={{ borderRadius: "50%", height: "50px", width: "50px" }}
-            src="/favicon.jpg"
-            alt="profile Image"
-          />
-        </div>
+            <p
+              style={{
+                color: "white",
+                fontWeight: "bold",
+              }}
+            >
+              Hi, {name}
+            </p>
+            <Button onClick={handleLogout}>Logout</Button>
+          </div>
+        ) : (
+          <Button>
+            {" "}
+            <NavLink to="/auth/login">Login</NavLink>
+          </Button>
+        )}
       </Header>
       <Content style={{ padding: "0 48px" }}>
         <div
