@@ -1,5 +1,6 @@
 import { Layout, Menu } from "antd";
 import { items } from "./MainLayout";
+import { Outlet } from "react-router-dom";
 
 const { Header, Content } = Layout;
 
@@ -23,7 +24,7 @@ const AuthLayout = () => {
             padding: 24,
           }}
         >
-          Content
+          <Outlet></Outlet>
         </div>
       </Content>
     </Layout>
