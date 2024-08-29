@@ -3,6 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { adminPaths } from "../../routes/adminRoutes";
 import { sidebarItemsGenerator } from "../../utils/sidebarItemsGenerator";
 import { userPaths } from "../../routes/userRoutes";
+import { useAppSelector } from "../../redux/hooks";
 const { Header, Content, Footer, Sider } = Layout;
 
 export const userRole = {
@@ -11,7 +12,7 @@ export const userRole = {
 };
 
 const DashboardLayout = () => {
-  const role = "user";
+  const role = useAppSelector((state) => state.auth.user?.role);
   let sidebarItems;
   switch (role) {
     case userRole.ADMIN:

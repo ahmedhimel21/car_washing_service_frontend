@@ -7,6 +7,7 @@ import { userPaths } from "./userRoutes";
 import { authPaths } from "./authRoutes";
 import { publicPaths } from "./publicRoutes";
 import { routesGenerator } from "../utils/routesGenerator";
+import ProtectedRoutes from "../components/layouts/ProtectedRoutes";
 
 const router = createBrowserRouter([
   {
@@ -16,12 +17,20 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <ProtectedRoutes>
+        <DashboardLayout></DashboardLayout>
+      </ProtectedRoutes>
+    ),
     children: routesGenerator(adminPaths),
   },
   {
     path: "/user",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <ProtectedRoutes>
+        <DashboardLayout></DashboardLayout>
+      </ProtectedRoutes>
+    ),
     children: routesGenerator(userPaths),
   },
   {

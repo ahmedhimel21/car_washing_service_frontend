@@ -1,6 +1,7 @@
 import { Layout, Menu, MenuProps } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
 import { userRole } from "./DashboardLayout";
+import { useAppSelector } from "../../redux/hooks";
 
 const { Header, Content, Footer } = Layout;
 
@@ -28,6 +29,7 @@ export const items: MenuProps["items"] = [
 ];
 
 const MainLayout = () => {
+  const name = useAppSelector((state) => state.auth.user?.name);
   return (
     <Layout style={{ height: "100vh" }}>
       <Header
@@ -58,7 +60,7 @@ const MainLayout = () => {
               fontWeight: "bold",
             }}
           >
-            Hi, {`Himel Ahmed`}
+            Hi, {name}
           </p>
           <img
             style={{ borderRadius: "50%", height: "50px", width: "50px" }}

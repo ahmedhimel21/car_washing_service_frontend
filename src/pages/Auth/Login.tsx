@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { useLoginMutation } from "../../redux/features/auth/authEndpoints";
 import { useAppDispatch } from "../../redux/hooks";
 import { setUser } from "../../redux/features/auth/authSlice";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 type TFormData = {
   email: string;
@@ -10,9 +12,8 @@ type TFormData = {
 };
 
 const Login = () => {
-  const [login, { data, error }] = useLoginMutation();
-  console.log("data =>", data);
-  console.log("error =>", error);
+  const navigate = useNavigate();
+  const [login] = useLoginMutation();
 
   const dispatch = useAppDispatch();
 
@@ -24,13 +25,20 @@ const Login = () => {
   });
 
   const onSubmit = async (data: TFormData) => {
-    const res = await login(data).unwrap();
-    dispatch(
-      setUser({
-        user: res.data.user,
-        token: res.data.accessToken,
-      })
-    );
+    const toastId = toast.loading("Logging in...");
+    try {
+      const res = await login(data).unwrap();
+      dispatch(
+        setUser({
+          user: res.data.user,
+          token: res.data.accessToken,
+        })
+      );
+      navigate(`/${res.data.user.role}/dashboard`);
+      toast.success("Logged in", { id: toastId });
+    } catch (err) {
+      toast.error("Something went wrong", { id: toastId });
+    }
   };
 
   return (
