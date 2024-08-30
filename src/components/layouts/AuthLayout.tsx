@@ -6,8 +6,15 @@ const { Header, Content } = Layout;
 
 const AuthLayout = () => {
   return (
-    <Layout style={{ height: "100vh" }}>
-      <Header style={{ display: "flex", alignItems: "center" }}>
+    <Layout style={{ height: "100%" }}>
+      <Header
+        style={{
+          display: "flex",
+          alignItems: "center",
+          position: "sticky",
+          top: "0",
+        }}
+      >
         <div className="demo-logo" />
         <Menu
           theme="dark"
@@ -20,7 +27,7 @@ const AuthLayout = () => {
       <Content style={{ padding: "0 48px" }}>
         <div
           style={{
-            minHeight: 280,
+            minHeight: 100,
             padding: 24,
           }}
         >
