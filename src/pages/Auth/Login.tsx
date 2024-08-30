@@ -9,12 +9,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import CInput from "../../components/form/CInput";
 import CForm from "../../components/form/CForm";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-
-const loginValidationSchema = z.object({
-  email: z.string({ required_error: "Email field is required" }),
-  password: z.string({ required_error: "Password field is required" }),
-});
+import { loginValidationSchema } from "../../schemas/loginValidationSchema";
+import { TError } from "../../types";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -35,7 +31,7 @@ const Login = () => {
       navigate(`/`);
       toast.success("Logged in", { id: toastId });
     } catch (err) {
-      toast.error((err as Record<string, any>).data.message, { id: toastId });
+      toast.error((err as TError).data.message, { id: toastId });
     }
   };
 
@@ -50,7 +46,7 @@ const Login = () => {
           <CInput type="password" name="password" label="Password"></CInput>
           <p style={{ marginBottom: "15px" }}>
             New to Car Washing Service?{" "}
-            <NavLink to="/auth/register">Register</NavLink>
+            <NavLink to="/register">Register</NavLink>
           </p>
           <Button htmlType="submit">Login</Button>
         </CForm>

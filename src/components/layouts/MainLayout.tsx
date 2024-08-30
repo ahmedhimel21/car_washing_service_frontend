@@ -33,7 +33,7 @@ const MainLayout = () => {
     dispatch(logout());
   };
   return (
-    <Layout style={{ height: "100%" }}>
+    <Layout>
       <Header
         style={{
           display: "flex",
@@ -70,7 +70,7 @@ const MainLayout = () => {
         ) : (
           <Button>
             {" "}
-            <NavLink to="/auth/login">Login</NavLink>
+            <NavLink to="/login">Login</NavLink>
           </Button>
         )}
       </Header>

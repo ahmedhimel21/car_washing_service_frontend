@@ -27,6 +27,7 @@ const DashboardLayout = () => {
   return (
     <Layout style={{ height: "100vh" }}>
       <Sider
+        style={{ position: "sticky", top: "0", left: "0" }}
         breakpoint="lg"
         collapsedWidth="0"
         onBreakpoint={(broken) => {

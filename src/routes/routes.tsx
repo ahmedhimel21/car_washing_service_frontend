@@ -1,13 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import DashboardLayout from "../components/layouts/DashboardLayout";
-import AuthLayout from "../components/layouts/AuthLayout";
+// import AuthLayout from "../components/layouts/AuthLayout";
 import { adminPaths } from "./adminRoutes";
 import { userPaths } from "./userRoutes";
 import { authPaths } from "./authRoutes";
 import { publicPaths } from "./publicRoutes";
 import { routesGenerator } from "../utils/routesGenerator";
 import ProtectedRoutes from "../components/layouts/ProtectedRoutes";
+import MainLayout from "../components/layouts/MainLayout";
 
 const router = createBrowserRouter([
   {
@@ -34,8 +35,8 @@ const router = createBrowserRouter([
     children: routesGenerator(userPaths),
   },
   {
-    path: "auth",
-    element: <AuthLayout></AuthLayout>,
+    path: "/",
+    element: <MainLayout></MainLayout>,
     children: routesGenerator(authPaths),
   },
 ]);
