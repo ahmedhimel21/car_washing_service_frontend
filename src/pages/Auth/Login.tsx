@@ -1,15 +1,12 @@
-import { Button } from "antd";
-import { useForm } from "react-hook-form";
+import { Button, Row } from "antd";
+import { FieldValues } from "react-hook-form";
 import { useLoginMutation } from "../../redux/features/auth/authEndpoints";
 import { useAppDispatch } from "../../redux/hooks";
 import { setUser } from "../../redux/features/auth/authSlice";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-
-type TFormData = {
-  email: string;
-  password: string;
-};
+import CInput from "../../components/form/CInput";
+import CForm from "../../components/form/CForm";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,14 +14,8 @@ const Login = () => {
 
   const dispatch = useAppDispatch();
 
-  const { register, handleSubmit } = useForm({
-    defaultValues: {
-      email: "user@gmail.com",
-      password: "ph-password",
-    },
-  });
-
-  const onSubmit = async (data: TFormData) => {
+  const onSubmit = async (data: FieldValues) => {
+    console.log(data);
     const toastId = toast.loading("Logging in...");
     try {
       const res = await login(data).unwrap();
@@ -42,20 +33,13 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h1>Login Page</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="userEmail">Email</label>
-          <input type="email" id="email" {...register("email")} />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" {...register("password")} />
-        </div>
+    <Row justify={"center"} align={"middle"} style={{ height: "100vh" }}>
+      <CForm onSubmit={onSubmit}>
+        <CInput type="email" name="email" label="Email"></CInput>
+        <CInput type="password" name="password" label="Password"></CInput>
         <Button htmlType="submit">Login</Button>
-      </form>
-    </div>
+      </CForm>
+    </Row>
   );
 };
 
