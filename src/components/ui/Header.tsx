@@ -61,12 +61,12 @@ const Navigation = () => {
             className="btn btn-accent h-12 max-w-[100px] flex-1"
             onClick={handleLogout}
           >
-            Logout
+            Sign Out
           </button>
         ) : (
           <button className="btn btn-primary h-12 max-w-[100px] flex-1">
             {" "}
-            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/login">Sign In</NavLink>
           </button>
         )}
       </Header>

@@ -1,9 +1,11 @@
 import Navigation from "../components/ui/Header";
+import Hero from "../components/ui/Hero";
 
 const Home = () => {
   return (
-    <div className="h-screen">
+    <div>
       <Navigation></Navigation>
+      <Hero></Hero>
     </div>
   );
 };
