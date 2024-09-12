@@ -1,10 +1,8 @@
-import { Button, Layout, Menu, MenuProps } from "antd";
+import { Layout, MenuProps } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
 import { userRole } from "./DashboardLayout";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { logout } from "../../redux/features/auth/authSlice";
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 export const items: MenuProps["items"] = [
   {
@@ -26,59 +24,13 @@ export const items: MenuProps["items"] = [
 ];
 
 const MainLayout = () => {
-  const name = useAppSelector((state) => state.auth.user?.name);
-  const dispatch = useAppDispatch();
-
-  const handleLogout = () => {
-    dispatch(logout());
-  };
   return (
     <Layout>
-      <Header
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <div className="demo-logo" />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={["2"]}
-          items={items}
-          style={{ flex: 1, minWidth: 0 }}
-        />
-        {name ? (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "10px",
-            }}
-          >
-            <p
-              style={{
-                color: "white",
-                fontWeight: "bold",
-              }}
-            >
-              Hi, {name}
-            </p>
-            <Button onClick={handleLogout}>Logout</Button>
-          </div>
-        ) : (
-          <Button>
-            {" "}
-            <NavLink to="/login">Login</NavLink>
-          </Button>
-        )}
-      </Header>
-      <Content style={{ padding: "0 48px" }}>
+      <Content style={{ padding: "0 0" }}>
         <div
           style={{
             minHeight: 280,
-            padding: 24,
+            padding: 0,
           }}
         >
           <Outlet></Outlet>
