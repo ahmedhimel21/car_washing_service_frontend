@@ -4,10 +4,11 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../utils/variants";
 import { useGetServicesQuery } from "../../redux/features/services/servicesEndpoints";
 import { TService } from "../../types";
+import { Skeleton } from "antd";
 
 const ServiceSlider = () => {
-  const { data: services } = useGetServicesQuery(undefined);
-  console.log(services);
+  const { data: services, isFetching } = useGetServicesQuery(undefined);
+
   return (
     <motion.div
       variants={fadeIn("up", 0.2)}
@@ -27,27 +28,29 @@ const ServiceSlider = () => {
           return (
             <SwiperSlide key={service._id}>
               <div className="max-w-[385px] mx-auto sm:mx-0 flex flex-col h-full justify-between">
-                <img
-                  src="/oil-change.jpg"
-                  alt="serviceImage"
-                  className="w-[380px] h-[284px]"
-                />
-                <div className="flex-grow">
-                  <h3 className="text-lg uppercase font-bold mb-1">
-                    {service.name}
-                  </h3>
-                  <h3 className="text-[13px] text-secondary uppercase mb-1 truncate">
-                    {service.description}
-                  </h3>
-                  <h3 className="mb-10 text-accent font-semibold uppercase">
-                    {service.price}
-                  </h3>
-                </div>
-                <div className="flex justify-center mt-auto">
-                  <button className="btn btn-accent btn-lg w-full">
-                    See Details
-                  </button>
-                </div>
+                <Skeleton loading={isFetching} active>
+                  <img
+                    src="/oil-change.jpg"
+                    alt="serviceImage"
+                    className="w-[380px] h-[284px]"
+                  />
+                  <div className="flex-grow">
+                    <h3 className="text-lg uppercase font-bold mb-1">
+                      {service.name}
+                    </h3>
+                    <h3 className="text-[13px] text-secondary uppercase mb-1 truncate">
+                      {service.description}
+                    </h3>
+                    <h3 className="mb-10 text-accent font-semibold uppercase">
+                      {service.price}
+                    </h3>
+                  </div>
+                  <div className="flex justify-center mt-auto">
+                    <button className="btn btn-accent btn-lg w-full">
+                      See Details
+                    </button>
+                  </div>
+                </Skeleton>
               </div>
             </SwiperSlide>
           );
