@@ -1,7 +1,8 @@
 import { Rate } from "antd";
 import { FaQuoteLeft } from "react-icons/fa";
 
-type TTestimonialProps = {
+export type TTestimonialProps = {
+  _id?: string;
   message: string;
   name: string;
   address: string;

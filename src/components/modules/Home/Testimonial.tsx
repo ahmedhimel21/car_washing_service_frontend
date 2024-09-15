@@ -2,7 +2,7 @@ import TestimonialSlider from "../../ui/TestimonialSlider";
 
 const Testimonial = () => {
   return (
-    <div className="section flex items-center border border-red-500">
+    <div className="section flex items-center">
       <div className="container mx-auto">
         <TestimonialSlider></TestimonialSlider>
       </div>

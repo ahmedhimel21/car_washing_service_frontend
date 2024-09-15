@@ -4,26 +4,11 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../utils/variants";
-import TestimonialCard from "./TestimonialCard";
-
-const data = [
-  {
-    name: "John Smith",
-    avatar: "https://randomuser.me/api/portraits/men/1.jpg",
-    message:
-      "The car wash service was amazing! My car has never looked this clean before. Highly recommend!",
-    address: "123 Main St, Los Angeles, CA",
-  },
-  {
-    name: "Emily Johnson",
-    avatar: "https://randomuser.me/api/portraits/women/2.jpg",
-    message:
-      "Super convenient and fast! The booking process was simple, and the service was top-notch.",
-    address: "456 Oak Avenue, Chicago, IL",
-  },
-];
+import TestimonialCard, { TTestimonialProps } from "./TestimonialCard";
+import { useGetReviewsQuery } from "../../redux/features/review/reviewEndpoints";
 
 const TestimonialSlider = () => {
+  const { data: reviews } = useGetReviewsQuery(undefined);
   return (
     <motion.div
       variants={fadeIn("up", 0.4)}
@@ -40,10 +25,10 @@ const TestimonialSlider = () => {
         modules={[Pagination]}
         className="h-[450px] xl:h-[400px] mb-4"
       >
-        {data.slice(-2).map((person, index) => {
+        {reviews?.data?.slice(-2).map((person: TTestimonialProps) => {
           const { name, message, address } = person;
           return (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={person._id}>
               <TestimonialCard
                 message={message}
                 name={name}

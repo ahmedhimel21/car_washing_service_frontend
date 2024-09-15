@@ -5,6 +5,7 @@ export type TService = {
   isDeleted: boolean;
   name: string;
   price: number;
+  image: string;
   updatedAt: string;
   _id: string;
 };

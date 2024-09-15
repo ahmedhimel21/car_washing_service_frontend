@@ -30,7 +30,7 @@ const ServiceSlider = () => {
               <div className="max-w-[385px] mx-auto sm:mx-0 flex flex-col h-full justify-between">
                 <Skeleton loading={isFetching} active>
                   <img
-                    src="/oil-change.jpg"
+                    src={service.image}
                     alt="serviceImage"
                     className="w-[380px] h-[284px]"
                   />

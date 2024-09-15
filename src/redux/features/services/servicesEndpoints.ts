@@ -7,6 +7,7 @@ const servicesEndpoints = baseApi.injectEndpoints({
         url: "/api/services",
         method: "GET",
       }),
+      providesTags: ["services"],
     }),
   }),
 });
