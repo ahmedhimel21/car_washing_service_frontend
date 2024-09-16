@@ -4,8 +4,9 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../utils/variants";
-import TestimonialCard, { TTestimonialProps } from "./TestimonialCard";
+import TestimonialCard from "./TestimonialCard";
 import { useGetReviewsQuery } from "../../redux/features/review/reviewEndpoints";
+import { TTestimonial } from "../../types";
 
 const TestimonialSlider = () => {
   const { data: reviews } = useGetReviewsQuery(undefined);
@@ -25,14 +26,15 @@ const TestimonialSlider = () => {
         modules={[Pagination]}
         className="h-[450px] xl:h-[400px] mb-4"
       >
-        {reviews?.data?.slice(-2).map((person: TTestimonialProps) => {
-          const { name, message, address } = person;
+        {reviews?.data?.slice(-2).map((person: TTestimonial) => {
+          const { name, message, address, rating } = person;
           return (
             <SwiperSlide key={person._id}>
               <TestimonialCard
                 message={message}
                 name={name}
                 address={address}
+                rating={rating}
               ></TestimonialCard>
             </SwiperSlide>
           );
