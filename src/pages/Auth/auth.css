@@ -1,0 +1,151 @@
+/* Logo Position */
+.logo-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 100; /* Ensure the logo is above other content */
+}
+
+.logo {
+  width: 120px; /* Adjust logo size as per your need */
+  cursor: pointer;
+}
+
+/* Login Page Styles */
+.login-page {
+  display: flex;
+  min-height: 100vh;
+}
+
+.login-col-left {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form-container {
+  max-width: 400px;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.login-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 1rem;
+}
+
+.social-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.social-icon:hover {
+  color: #ff4b2b;
+}
+
+.use-account {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #888;
+  font-size: large;
+}
+
+.forgot-password {
+  text-align: right;
+  margin-bottom: 1rem;
+  color: #888;
+  cursor: pointer;
+}
+
+.login-button {
+  width: 100%;
+  background-color: #ff4b2b;
+  border: none;
+  height: 45px;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 1rem;
+  color: #888;
+}
+
+.login-col-right {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  padding: 40px 20px;
+}
+
+.signup-container {
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.welcome-text {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.welcome-subtext {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.signup-button {
+  width: 100%;
+  height: 45px;
+  border: 2px solid #fff;
+  color: #fff;
+  border-radius: 20px;
+  background: transparent;
+  transition: background 0.3s, color 0.3s;
+}
+
+.signup-button:hover {
+  background-color: white;
+  color: #4096ff;
+  border: 1px solid #4096ff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-col-left,
+  .login-col-right {
+    padding: 40px 20px;
+  }
+
+  .login-form-container,
+  .signup-container {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 576px) {
+  .login-form-container,
+  .signup-container {
+    max-width: 100%;
+  }
+
+  .login-title,
+  .welcome-text {
+    font-size: 1.75rem;
+  }
+}

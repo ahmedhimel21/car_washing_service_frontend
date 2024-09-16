@@ -14,7 +14,7 @@ const CInput = ({ type, name, label }: TCInputProps) => {
         name={name}
         render={({ field, fieldState: { error } }) => (
           <Form.Item label={label}>
-            <Input {...field} type={type} id={name} />
+            <Input size="large" {...field} type={type} id={name} />
             <div>
               {error && <small style={{ color: "red" }}>{error.message}</small>}
             </div>

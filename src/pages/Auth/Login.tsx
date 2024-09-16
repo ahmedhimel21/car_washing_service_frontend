@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Col, Flex } from "antd";
+import { Button, Col, Row } from "antd";
 import { FieldValues } from "react-hook-form";
 import { useLoginMutation } from "../../redux/features/auth/authEndpoints";
 import { useAppDispatch } from "../../redux/hooks";
@@ -11,6 +11,8 @@ import CForm from "../../components/form/CForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginValidationSchema } from "../../schemas/loginValidationSchema";
 import { TError } from "../../types";
+import SocialLogin from "../../components/ui/SocialLogin";
+import "./auth.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -36,22 +38,52 @@ const Login = () => {
   };
 
   return (
-    <Flex justify={"center"} align={"center"}>
-      <Col span={6}>
-        <CForm
-          resolver={zodResolver(loginValidationSchema)}
-          onSubmit={onSubmit}
-        >
-          <CInput type="email" name="email" label="Email"></CInput>
-          <CInput type="password" name="password" label="Password"></CInput>
-          <p style={{ marginBottom: "15px" }}>
-            New to Car Washing Service?{" "}
-            <NavLink to="/register">Register</NavLink>
-          </p>
-          <Button htmlType="submit">Login</Button>
-        </CForm>
-      </Col>
-    </Flex>
+    <div className="login-page-container">
+      <NavLink to="/" className="logo-container">
+        <img src={"/logo.png"} alt="Logo" className="logo" />
+      </NavLink>
+
+      <Row className="login-page" style={{ minHeight: "100vh" }}>
+        {/* Left Section - Sign In Form */}
+        <Col xs={24} md={12} className="login-col-left">
+          <div className="login-form-container">
+            <h2 className="login-title">Sign in</h2>
+
+            {/* Social Login Buttons */}
+            <SocialLogin></SocialLogin>
+            <p className="use-account">or use your account</p>
+
+            {/* Login Form */}
+            <CForm
+              resolver={zodResolver(loginValidationSchema)}
+              onSubmit={onSubmit}
+            >
+              <CInput type="email" name="email" label="Email"></CInput>
+              <CInput type="password" name="password" label="Password"></CInput>
+              <Button
+                className="btn btn-accent btn-lg rounded-md"
+                htmlType="submit"
+              >
+                Login
+              </Button>
+            </CForm>
+          </div>
+        </Col>
+
+        {/* Right Section - Signup Info */}
+        <Col xs={24} md={12} className="login-col-right">
+          <div className="signup-container">
+            <h2 className="welcome-text">Hello</h2>
+            <p className="welcome-subtext">
+              Enter your personal details and start your journey AquaClean
+            </p>
+            <NavLink to="/register">
+              <button className="signup-button">Sign Up</button>
+            </NavLink>
+          </div>
+        </Col>
+      </Row>
+    </div>
   );
 };
 

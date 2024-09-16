@@ -3,11 +3,13 @@ import CForm from "../../components/form/CForm";
 import { registrationValidationSchema } from "../../schemas/registrationValidationSchema";
 import { FieldValues } from "react-hook-form";
 import CInput from "../../components/form/CInput";
-import { Button, Col, Flex } from "antd";
+import { Button, Col, Row } from "antd";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../../redux/features/auth/authEndpoints";
 import { toast } from "sonner";
 import { TError } from "../../types";
+
+import "./auth.css";
 
 const Register = () => {
   const [register, { error }] = useRegisterMutation();
@@ -32,24 +34,49 @@ const Register = () => {
     }
   };
   return (
-    <Flex justify={"center"} align={"center"}>
-      <Col span={6}>
-        <CForm
-          onSubmit={onSubmit}
-          resolver={zodResolver(registrationValidationSchema)}
-        >
-          <CInput type="text" name="name" label="Name"></CInput>
-          <CInput type="email" name="email" label="Email"></CInput>
-          <CInput type="password" name="password" label="Password"></CInput>
-          <CInput type="text" name="phone" label="Phone"></CInput>
-          <CInput type="text" name="address" label="Address"></CInput>
-          <p style={{ marginBottom: "15px" }}>
-            Already have account? <NavLink to="/login">Login</NavLink>
-          </p>
-          <Button htmlType="submit">Sign Up</Button>
-        </CForm>
-      </Col>
-    </Flex>
+    <div className="login-page-container">
+      <NavLink to="/" className="logo-container">
+        <img src={"/logo.png"} alt="Logo" className="logo" />
+      </NavLink>
+      <Row className="login-page" style={{ minHeight: "100vh" }}>
+        {/* Left Section - Sign up Form */}
+        <Col xs={24} md={12} className="login-col-left">
+          <div className="login-form-container">
+            <h2 className="login-title">Sign Up</h2>
+            {/* Sing up Form */}
+            <CForm
+              onSubmit={onSubmit}
+              resolver={zodResolver(registrationValidationSchema)}
+            >
+              <CInput type="text" name="name" label="Name"></CInput>
+              <CInput type="email" name="email" label="Email"></CInput>
+              <CInput type="password" name="password" label="Password"></CInput>
+              <CInput type="text" name="phone" label="Phone"></CInput>
+              <CInput type="text" name="address" label="Address"></CInput>
+              <Button
+                className="btn btn-accent btn-lg rounded-md"
+                htmlType="submit"
+              >
+                Sing Up
+              </Button>
+            </CForm>
+          </div>
+        </Col>
+
+        {/* Right Section - Signup Info */}
+        <Col xs={24} md={12} className="login-col-right">
+          <div className="signup-container">
+            <h2 className="welcome-text">Hello</h2>
+            <p className="welcome-subtext">
+              Enter your personal details and start your journey AquaClean
+            </p>
+            <NavLink to="/login">
+              <button className="signup-button">Sign In</button>
+            </NavLink>
+          </div>
+        </Col>
+      </Row>
+    </div>
   );
 };
 

@@ -25,7 +25,7 @@ export const items: MenuProps["items"] = [
 
 const MainLayout = () => {
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout style={{ height: "100%" }}>
       <Content style={{ padding: "0 0" }}>
         <div
           style={{
