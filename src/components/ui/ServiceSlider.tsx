@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from "../../utils/variants";
 import { useGetServicesQuery } from "../../redux/features/services/servicesEndpoints";
 import { TService } from "../../types";
-import { Skeleton } from "antd";
+import ServiceCard from "./ServiceCard";
 
 const ServiceSlider = () => {
   const { data: services, isFetching } = useGetServicesQuery(undefined);
@@ -24,34 +24,13 @@ const ServiceSlider = () => {
           1260: { slidesPerView: 3, spaceBetween: 32 },
         }}
       >
-        {(services?.data as TService[])?.map((service) => {
+        {(services?.data as TService[])?.slice(-6).map((service) => {
           return (
             <SwiperSlide key={service._id}>
-              <div className="max-w-[385px] mx-auto sm:mx-0 flex flex-col h-full justify-between">
-                <Skeleton loading={isFetching} active>
-                  <img
-                    src={service.image}
-                    alt="serviceImage"
-                    className="w-[380px] h-[284px]"
-                  />
-                  <div className="flex-grow">
-                    <h3 className="text-lg uppercase font-bold mb-1">
-                      {service.name}
-                    </h3>
-                    <h3 className="text-[13px] text-secondary uppercase mb-1 truncate">
-                      {service.description}
-                    </h3>
-                    <h3 className="mb-10 text-accent font-semibold uppercase">
-                      {service.price}
-                    </h3>
-                  </div>
-                  <div className="flex justify-center mt-auto">
-                    <button className="btn btn-accent btn-lg w-full">
-                      See Details
-                    </button>
-                  </div>
-                </Skeleton>
-              </div>
+              <ServiceCard
+                service={service}
+                isFetching={isFetching}
+              ></ServiceCard>
             </SwiperSlide>
           );
         })}
