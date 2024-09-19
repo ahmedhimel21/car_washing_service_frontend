@@ -4,7 +4,6 @@ const servicesEndpoints = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getServices: builder.query({
       query: ({ searchTerm, minPrice, maxPrice, sort }) => {
-        console.log("inside api", sort);
         const params = new URLSearchParams();
         if (searchTerm) {
           params.append("searchTerm", searchTerm);
@@ -26,7 +25,17 @@ const servicesEndpoints = baseApi.injectEndpoints({
       },
       providesTags: ["services"],
     }),
+    getSingleService: builder.query({
+      query: (id) => {
+        console.log(id);
+        return {
+          url: `/api/services/${id}`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetServicesQuery } = servicesEndpoints;
+export const { useGetServicesQuery, useGetSingleServiceQuery } =
+  servicesEndpoints;
