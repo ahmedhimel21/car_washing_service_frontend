@@ -7,7 +7,7 @@ import { TService } from "../../types";
 import ServiceCard from "./ServiceCard";
 
 const ServiceSlider = () => {
-  const { data: services, isFetching } = useGetServicesQuery(undefined);
+  const { data: services, isFetching } = useGetServicesQuery("");
 
   return (
     <motion.div
