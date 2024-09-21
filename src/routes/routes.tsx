@@ -9,6 +9,7 @@ import { publicPaths } from "./publicRoutes";
 import { routesGenerator } from "../utils/routesGenerator";
 import ProtectedRoutes from "../components/layouts/ProtectedRoutes";
 import MainLayout from "../components/layouts/MainLayout";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <MainLayout></MainLayout>,
     children: routesGenerator(authPaths),
+  },
+  {
+    path: "*",
+    element: <ErrorPage></ErrorPage>,
   },
 ]);
 

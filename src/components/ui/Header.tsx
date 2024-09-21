@@ -46,7 +46,7 @@ const Navigation = () => {
           backgroundColor: "white",
         }}
       >
-        <div style={{ flex: 0.5 }}>
+        <div style={{ flex: 0.8 }}>
           <img src="/logo.png" alt="logo" className="h-12 bg-cover" />
         </div>
         <Menu

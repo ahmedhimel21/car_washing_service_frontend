@@ -5,16 +5,31 @@ type TCInputProps = {
   type: string;
   name: string;
   label: string;
+  initialValue?: string;
+  disabled?: boolean;
 };
 
-const CInput = ({ type, name, label }: TCInputProps) => {
+const CInput = ({
+  type,
+  name,
+  label,
+  initialValue,
+  disabled,
+}: TCInputProps) => {
   return (
     <div style={{ marginBottom: "15px" }}>
       <Controller
+        defaultValue={initialValue}
         name={name}
         render={({ field, fieldState: { error } }) => (
-          <Form.Item label={label}>
-            <Input size="large" {...field} type={type} id={name} />
+          <Form.Item initialValue={10000} label={label}>
+            <Input
+              size="large"
+              {...field}
+              type={type}
+              id={name}
+              disabled={disabled}
+            />
             <div>
               {error && <small style={{ color: "red" }}>{error.message}</small>}
             </div>

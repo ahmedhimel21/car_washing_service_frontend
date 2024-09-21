@@ -27,7 +27,6 @@ const servicesEndpoints = baseApi.injectEndpoints({
     }),
     getSingleService: builder.query({
       query: (id) => {
-        console.log(id);
         return {
           url: `/api/services/${id}`,
           method: "GET",

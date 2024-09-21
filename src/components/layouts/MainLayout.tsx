@@ -11,11 +11,7 @@ export const items: MenuProps["items"] = [
   },
   {
     key: "Services",
-    label: <NavLink to="services">Services</NavLink>,
-  },
-  {
-    key: "Booking",
-    label: <NavLink to="booking">Booking</NavLink>,
+    label: <NavLink to="/services">Services</NavLink>,
   },
   {
     key: "Dashboard",

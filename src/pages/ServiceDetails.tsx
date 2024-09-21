@@ -1,8 +1,8 @@
 import Navigation from "../components/ui/Header";
 import { useGetSingleServiceQuery } from "../redux/features/services/servicesEndpoints";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useGetAvailableSlotsQuery } from "../redux/features/slots/slotsEndpoints";
-import { notification, Skeleton } from "antd";
+import { Skeleton } from "antd";
 import { TSlot } from "../types/slot.types";
 import { format } from "date-fns";
 import { useEffect, useRef, useState } from "react";
@@ -17,9 +17,16 @@ const ServiceDetails = () => {
   // Fetch available slots for the selected date
   const { data: slots } = useGetAvailableSlotsQuery({ date, id });
 
-  const handleSlotClick = (slot: { startTime: string; endTime: string }) => {
-    setSelectedSlot(`${slot.startTime} - ${slot.endTime}`);
+  const handleSlotClick = (slot: {
+    startTime: string;
+    endTime: string;
+    _id: string;
+  }) => {
+    setSelectedSlot(`${slot.startTime} - ${slot.endTime}, ${slot._id}`);
   };
+
+  const slot = selectedSlot?.split(",")[0];
+  const slotId = selectedSlot?.split(",")[1].trim();
 
   const bookingButtonRef = useRef<HTMLDivElement | null>(null);
 
@@ -29,14 +36,6 @@ const ServiceDetails = () => {
     }
   }, [selectedSlot]);
 
-  const handleBooking = () => {
-    if (selectedSlot) {
-      notification.success({
-        message: "Service Booked",
-        description: `You have booked ${service?.data?.name} on ${date} at ${selectedSlot}.`,
-      });
-    }
-  };
   return (
     <>
       <Navigation></Navigation>
@@ -79,7 +78,13 @@ const ServiceDetails = () => {
             {isLoading ? (
               <p>Loading slots...</p>
             ) : (
-              <div className="grid grid-cols-3 xl:grid-cols-5 gap-4">
+              <div
+                className={`${
+                  slots?.data?.length < 5
+                    ? "flex justify-center"
+                    : "grid grid-cols-3 xl:grid-cols-5"
+                } gap-4`}
+              >
                 {slots?.data?.map((slot: TSlot) => (
                   <button
                     key={slot._id}
@@ -87,12 +92,13 @@ const ServiceDetails = () => {
                       slot.isBooked === "available"
                         ? "btn-accent"
                         : "btn-disabled"
-                    } btn-lg w-full`}
+                    } btn-lg w-[225px]`}
                     disabled={slot.isBooked !== "available"}
                     onClick={() =>
                       handleSlotClick({
                         startTime: slot.startTime,
                         endTime: slot.endTime,
+                        _id: slot._id,
                       })
                     }
                   >
@@ -103,13 +109,14 @@ const ServiceDetails = () => {
             )}
             {selectedSlot && (
               <div className="my-6" ref={bookingButtonRef}>
-                <button
-                  onClick={handleBooking}
-                  disabled={!selectedSlot}
-                  className="btn btn-primary btn-lg max-w-[230px] mx-auto"
-                >
-                  Book This Service
-                </button>
+                <Link to={`/booking/${id}/${slot}/${slotId}`}>
+                  <button
+                    disabled={!selectedSlot}
+                    className="btn btn-primary btn-lg max-w-[230px] mx-auto"
+                  >
+                    Book This Service
+                  </button>
+                </Link>
               </div>
             )}
           </div>

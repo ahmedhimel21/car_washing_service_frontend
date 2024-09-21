@@ -1,0 +1,65 @@
+/* Login Page Styles */
+.booking-page {
+  display: flex;
+  min-height: 100vh;
+}
+
+.booking-col-right {
+  background: linear-gradient(to right, #ffffff, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  padding: 40px 20px;
+}
+
+.booking-container {
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.booking-col-left {
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.booking-form-container {
+  max-width: 400px;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.payment-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-col-left,
+  .login-col-right {
+    padding: 40px 20px;
+  }
+
+  .login-form-container,
+  .signup-container {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 576px) {
+  .login-form-container,
+  .signup-container {
+    max-width: 100%;
+  }
+
+  .login-title,
+  .welcome-text {
+    font-size: 1.75rem;
+  }
+}
