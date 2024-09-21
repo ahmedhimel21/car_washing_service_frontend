@@ -4,7 +4,7 @@ import { adminPaths } from "../../routes/adminRoutes";
 import { sidebarItemsGenerator } from "../../utils/sidebarItemsGenerator";
 import { userPaths } from "../../routes/userRoutes";
 import { useAppSelector } from "../../redux/hooks";
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 export const userRole = {
   ADMIN: "admin",
@@ -25,9 +25,9 @@ const DashboardLayout = () => {
       break;
   }
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout style={{ height: "100%" }}>
       <Sider
-        style={{ position: "sticky", top: "0", left: "0" }}
+        style={{ position: "sticky", top: "0", left: "0", height: "100vh" }}
         breakpoint="lg"
         collapsedWidth="0"
         onBreakpoint={(broken) => {
@@ -46,7 +46,7 @@ const DashboardLayout = () => {
           }}
         >
           <NavLink to="/">
-            <h1>Logo</h1>
+            <h1 className="text-xl font-bold text-white text-center">🏠Home</h1>
           </NavLink>
         </div>
         <Menu
@@ -68,9 +68,6 @@ const DashboardLayout = () => {
             <Outlet></Outlet>
           </div>
         </Content>
-        <Footer style={{ textAlign: "center" }}>
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer>
       </Layout>
     </Layout>
   );

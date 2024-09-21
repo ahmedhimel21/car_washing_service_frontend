@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 const { Header } = Layout;
 
 const Navigation = () => {
-  const name = useAppSelector((state) => state.auth.user?.name);
+  const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
@@ -46,7 +46,7 @@ const Navigation = () => {
           backgroundColor: "white",
         }}
       >
-        <div style={{ flex: 0.8 }}>
+        <div style={{ flex: 1 }}>
           <img src="/logo.png" alt="logo" className="h-12 bg-cover" />
         </div>
         <Menu
@@ -56,13 +56,16 @@ const Navigation = () => {
           items={items}
           style={{ flex: 1, minWidth: 0 }}
         />
-        {name ? (
-          <button
-            className="btn btn-accent h-12 max-w-[100px] flex-1"
-            onClick={handleLogout}
-          >
-            Sign Out
-          </button>
+        {user ? (
+          <div className="flex justify-end gap-5 items-center flex-1">
+            <NavLink to={`/${user?.role}/dashboard`}>Dashboard</NavLink>
+            <button
+              className="btn btn-accent h-12 max-w-[100px]"
+              onClick={handleLogout}
+            >
+              Sign Out
+            </button>
+          </div>
         ) : (
           <button className="btn btn-primary h-12 max-w-[100px] flex-1">
             {" "}

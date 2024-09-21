@@ -1,7 +1,13 @@
+import { useAppSelector } from "../../redux/hooks";
+
 const AdminDashboard = () => {
+  const user = useAppSelector((state) => state.auth.user);
+  console.log(user);
   return (
     <div>
-      <h1>This is admin dashboard!</h1>
+      <h1 className="text-2xl font-bold text-center">
+        Welcome Back {user?.name}
+      </h1>
     </div>
   );
 };

@@ -1,8 +1,12 @@
 import { Layout, MenuProps } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
-import { userRole } from "./DashboardLayout";
+// import { userRole } from "./DashboardLayout";
+import { useAppSelector } from "../../redux/hooks";
 
 const { Content } = Layout;
+
+let role;
+console.log(role);
 
 export const items: MenuProps["items"] = [
   {
@@ -13,13 +17,11 @@ export const items: MenuProps["items"] = [
     key: "Services",
     label: <NavLink to="/services">Services</NavLink>,
   },
-  {
-    key: "Dashboard",
-    label: <NavLink to={`/${userRole.USER}/dashboard`}>Dashboard</NavLink>, //todo
-  },
 ];
 
 const MainLayout = () => {
+  const user = useAppSelector((state) => state?.auth?.user);
+  role = user?.role;
   return (
     <Layout style={{ height: "100%" }}>
       <Content style={{ padding: "0 0" }}>

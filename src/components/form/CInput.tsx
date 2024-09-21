@@ -5,7 +5,7 @@ type TCInputProps = {
   type: string;
   name: string;
   label: string;
-  initialValue?: string;
+  initialValue?: string | number;
   disabled?: boolean;
 };
 

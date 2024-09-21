@@ -2,6 +2,17 @@ import { baseApi } from "../../api/baseApi";
 
 const servicesEndpoints = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    createService: builder.mutation({
+      query: (args) => {
+        console.log(args);
+        return {
+          url: "/api/services",
+          method: "POST",
+          body: args,
+        };
+      },
+      invalidatesTags: ["services"],
+    }),
     getServices: builder.query({
       query: ({ searchTerm, minPrice, maxPrice, sort }) => {
         const params = new URLSearchParams();
@@ -33,8 +44,33 @@ const servicesEndpoints = baseApi.injectEndpoints({
         };
       },
     }),
+    updateService: builder.mutation({
+      query: (args) => {
+        return {
+          url: `/api/services/update/${args?._id}`,
+          method: "PUT",
+          body: args?.updateData,
+        };
+      },
+      invalidatesTags: ["services"],
+    }),
+    deleteService: builder.mutation({
+      query: (_id) => {
+        console.log(_id);
+        return {
+          url: `/api/services/${_id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["services"],
+    }),
   }),
 });
 
-export const { useGetServicesQuery, useGetSingleServiceQuery } =
-  servicesEndpoints;
+export const {
+  useGetServicesQuery,
+  useGetSingleServiceQuery,
+  useUpdateServiceMutation,
+  useDeleteServiceMutation,
+  useCreateServiceMutation,
+} = servicesEndpoints;
