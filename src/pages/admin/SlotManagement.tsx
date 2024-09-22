@@ -148,8 +148,8 @@ const UpdateStatusModal = ({
       const res = await updateSlot({ _id: data?._id, updateData: value });
       if (res?.data?.success) {
         setIsModalOpen(false);
+        toast.success("Updated Successfully", { id: toastId });
       }
-      toast.success("Updated Successfully", { id: toastId });
     } catch (err) {
       toast.error("Something went wrong", { id: toastId });
     }
