@@ -2,7 +2,7 @@ import { logout } from "../../redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { Layout, Menu } from "antd";
 import { items } from "../layouts/MainLayout";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const { Header } = Layout;
@@ -46,9 +46,9 @@ const Navigation = () => {
           backgroundColor: "white",
         }}
       >
-        <div style={{ flex: 1 }}>
+        <Link to={"/"} style={{ flex: 1 }}>
           <img src="/logo.png" alt="logo" className="h-12 bg-cover" />
-        </div>
+        </Link>
         <Menu
           theme="light"
           mode="horizontal"

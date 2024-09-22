@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Layout, Menu } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
 import { adminPaths } from "../../routes/adminRoutes";
@@ -53,7 +54,7 @@ const DashboardLayout = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["4"]}
-          items={sidebarItems}
+          items={sidebarItems as any}
         />
       </Sider>
       <Layout>

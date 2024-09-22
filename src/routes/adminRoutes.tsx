@@ -1,4 +1,5 @@
 import AdminDashboard from "../pages/admin/AdminDashboard";
+import BookingManagement from "../pages/admin/BookingManagement";
 import ServiceManagement from "../pages/admin/ServiceManagement";
 import SlotManagement from "../pages/admin/SlotManagement";
 import UserManagement from "../pages/admin/UserManagement";
@@ -21,7 +22,17 @@ export const adminPaths = [
   },
   {
     name: "User Management",
-    path: "userManagement",
-    element: <UserManagement></UserManagement>,
+    children: [
+      {
+        name: "Booking Management",
+        path: "bookingManagement",
+        element: <BookingManagement></BookingManagement>,
+      },
+      {
+        name: "Manage User",
+        path: "userManagement",
+        element: <UserManagement></UserManagement>,
+      },
+    ],
   },
 ];

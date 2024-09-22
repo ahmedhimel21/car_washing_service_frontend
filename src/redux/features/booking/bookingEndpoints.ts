@@ -1,11 +1,11 @@
 import { baseApi } from "../../api/baseApi";
 
-const paymentEndpoints = baseApi.injectEndpoints({
+const bookingEndpoints = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    makePayment: builder.mutation({
+    createBooking: builder.mutation({
       query: (args) => {
         return {
-          url: "/api/payment",
+          url: "/api/bookings",
           method: "POST",
           body: args,
         };
@@ -14,4 +14,4 @@ const paymentEndpoints = baseApi.injectEndpoints({
   }),
 });
 
-export const { useMakePaymentMutation } = paymentEndpoints;
+export const { useCreateBookingMutation } = bookingEndpoints;

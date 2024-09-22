@@ -25,10 +25,10 @@ const SuccessPage = () => {
           </div>
         )}
         <a
-          href="/"
+          href="/user/dashboard"
           className="mt-6 inline-block bg-green-500 text-white py-2 px-4 rounded"
         >
-          Go to Home
+          Go to Dashboard
         </a>
       </div>
     </div>

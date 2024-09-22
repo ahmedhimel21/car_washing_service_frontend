@@ -13,6 +13,7 @@ const CSelect = ({ label, name, options }: TCSelect) => {
       render={({ field }) => (
         <Form.Item label={label}>
           <Select
+            size="large"
             style={{ width: "100%" }}
             {...field}
             options={options}
