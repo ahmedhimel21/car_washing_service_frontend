@@ -85,7 +85,7 @@ const UserDashboard = () => {
       <h3 className="text-xl text-center font-bold mt-4">Upcoming Bookings</h3>
       <div
         className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${
-          upcomingBookings.length < 3 ? "justify-center" : ""
+          upcomingBookings?.length < 3 ? "justify-center" : ""
         } mt-6`}
       >
         {upcomingBookings?.map((booking: any) => {

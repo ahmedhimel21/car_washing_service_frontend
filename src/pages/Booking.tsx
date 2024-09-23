@@ -53,7 +53,7 @@ const Booking = () => {
       if (res?.data?.data?.result) {
         toast.success("Payment successful", { id: toastId });
         window.open(res?.data?.data?.payment_url, "_blank");
-        navigate("/payment/success");
+        navigate(`/${user?.role}/dashboard`);
       }
       if (!(res?.error as any).data?.success) {
         toast.error("Failed payment", { id: toastId });

@@ -150,6 +150,7 @@ const UpdateStatusModal = ({
         setIsModalOpen(false);
         toast.success("Updated Successfully", { id: toastId });
       }
+      console.log(res);
     } catch (err) {
       toast.error("Something went wrong", { id: toastId });
     }
