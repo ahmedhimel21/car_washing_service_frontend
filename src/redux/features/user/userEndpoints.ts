@@ -18,7 +18,21 @@ const userEndpoints = baseApi.injectEndpoints({
       },
       invalidatesTags: ["user"],
     }),
+    updateUserProfile: builder.mutation({
+      query: (args) => {
+        return {
+          url: `/api/users/update/${args?.id}`,
+          method: "PUT",
+          body: args?.updateData,
+        };
+      },
+      invalidatesTags: ["user"],
+    }),
   }),
 });
 
-export const { useGetAllUsersQuery, useUpdateUserRoleMutation } = userEndpoints;
+export const {
+  useGetAllUsersQuery,
+  useUpdateUserRoleMutation,
+  useUpdateUserProfileMutation,
+} = userEndpoints;

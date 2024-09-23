@@ -5,6 +5,7 @@ import { adminPaths } from "../../routes/adminRoutes";
 import { sidebarItemsGenerator } from "../../utils/sidebarItemsGenerator";
 import { userPaths } from "../../routes/userRoutes";
 import { useAppSelector } from "../../redux/hooks";
+import NavbarCountDown from "../ui/NavbarCountDown";
 const { Header, Content, Sider } = Layout;
 
 export const userRole = {
@@ -13,9 +14,9 @@ export const userRole = {
 };
 
 const DashboardLayout = () => {
-  const role = useAppSelector((state) => state.auth.user?.role);
+  const user = useAppSelector((state) => state.auth.user);
   let sidebarItems;
-  switch (role) {
+  switch (user?.role) {
     case userRole.ADMIN:
       sidebarItems = sidebarItemsGenerator(adminPaths, userRole.ADMIN);
       break;
@@ -46,9 +47,9 @@ const DashboardLayout = () => {
             alignItems: "center",
           }}
         >
-          <NavLink to="/">
-            <h1 className="text-xl font-bold text-white text-center">🏠Home</h1>
-          </NavLink>
+          <h1 className="text-xl font-bold text-white text-center">
+            AquaClean
+          </h1>
         </div>
         <Menu
           theme="dark"
@@ -58,7 +59,25 @@ const DashboardLayout = () => {
         />
       </Sider>
       <Layout>
-        <Header style={{ padding: 0 }} />
+        <Header
+          style={{
+            padding: 0,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            paddingRight: "16px",
+          }}
+        >
+          {/* Add NavbarCountdown to the Header */}
+          <div style={{ marginLeft: "16px" }}>
+            <NavLink to="/">
+              <h1 className="text-xl font-bold text-white text-center">
+                🏠Home
+              </h1>
+            </NavLink>
+          </div>
+          {user?.role === userRole.USER && <NavbarCountDown />}
+        </Header>
         <Content style={{ margin: "24px 16px 0" }}>
           <div
             style={{
