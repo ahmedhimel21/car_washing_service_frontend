@@ -10,7 +10,7 @@ const CSelect = ({ label, name, options }: TCSelect) => {
   return (
     <Controller
       name={name}
-      render={({ field }) => (
+      render={({ field, fieldState: { error } }) => (
         <Form.Item label={label}>
           <Select
             size="large"
@@ -18,6 +18,9 @@ const CSelect = ({ label, name, options }: TCSelect) => {
             {...field}
             options={options}
           ></Select>
+          <div>
+            {error && <small style={{ color: "red" }}>{error.message}</small>}
+          </div>
         </Form.Item>
       )}
     ></Controller>

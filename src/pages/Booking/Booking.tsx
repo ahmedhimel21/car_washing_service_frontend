@@ -1,23 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate, useParams } from "react-router-dom";
-import Navigation from "../components/ui/Header";
-import { useGetSingleServiceQuery } from "../redux/features/services/servicesEndpoints";
 import { Button, Col, Row, Skeleton } from "antd";
-import CForm from "../components/form/CForm";
-import CInput from "../components/form/CInput";
 
 import "./booking.css";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
-import { useAppSelector } from "../redux/hooks";
 import { useEffect } from "react";
-import { useCreateBookingMutation } from "../redux/features/booking/bookingEndpoints";
-import CSelect from "../components/form/CSelect";
-import { carTypeOptions } from "../constant/booking.constant";
+import { useAppSelector } from "../../redux/hooks";
+import { useGetSingleServiceQuery } from "../../redux/features/services/servicesEndpoints";
+import { useCreateBookingMutation } from "../../redux/features/booking/bookingEndpoints";
+import Navigation from "../../components/ui/Header";
+import CForm from "../../components/form/CForm";
+import CInput from "../../components/form/CInput";
+import CSelect from "../../components/form/CSelect";
+import { carTypeOptions } from "../../constant/booking.constant";
+import { bookingValidationSchema } from "../../schemas/bookingValidationSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const Booking = () => {
   const navigate = useNavigate();
-
+  // get user info from local state
   const user = useAppSelector((state) => state.auth.user);
 
   // Check if user is logged in, if not, redirect to login page
@@ -26,12 +28,15 @@ const Booking = () => {
       navigate("/login", { replace: true }); // replace: true to prevent navigating back to the protected page
     }
   }, [user, navigate]);
-
+  //grab serviceId, slot time, and slotId from params
   const { id, slot, slotId } = useParams();
+  // get single service data
   const { data: service, isFetching, isLoading } = useGetSingleServiceQuery(id);
+  // create booking mutation
   const [createBooking] = useCreateBookingMutation();
 
   const onSubmit = async (data: FieldValues) => {
+    console.log(data);
     const toastId = toast.loading("Booking on processing...");
     const formData = {
       cus_name: data.name,
@@ -46,18 +51,15 @@ const Booking = () => {
       slotId: slotId,
       serviceId: service?.data?._id,
     };
-    console.log(formData);
     try {
       const res = await createBooking(formData);
-      console.log(res);
-      if (res?.data?.data?.result) {
+      if (res?.data?.success) {
         toast.success("Payment successful", { id: toastId });
-        window.open(res?.data?.data?.payment_url, "_blank");
+        window.open(res?.data?.data?.payment_url, "_self");
         navigate(`/${user?.role}/dashboard`);
       }
       if (!(res?.error as any).data?.success) {
-        toast.error("Failed payment", { id: toastId });
-        navigate("/payment/fail");
+        toast.error("Failed payment, Please try agin", { id: toastId });
       }
     } catch (err) {
       toast.error("Something went wrong", { id: toastId });
@@ -91,6 +93,9 @@ const Booking = () => {
                         <h3 className="text-[13px] text-secondary uppercase mb-1">
                           {service?.data.description}
                         </h3>
+                        <h3 className="text-[13px] text-secondary uppercase mb-1">
+                          ⌛ Selected Time: {slot}
+                        </h3>
                         <div className="flex justify-between items-center">
                           <h3 className="mb-10 text-accent font-semibold uppercase">
                             $ {service?.data.price}
@@ -110,7 +115,7 @@ const Booking = () => {
                     {/* booking Form */}
 
                     <CForm
-                      // resolver={zodResolver(loginValidationSchema)}
+                      resolver={zodResolver(bookingValidationSchema)}
                       onSubmit={onSubmit}
                     >
                       <CInput

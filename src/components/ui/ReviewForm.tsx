@@ -12,13 +12,18 @@ import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 
 const ReviewForm = () => {
+  // get user info from local state
   const user = useAppSelector((state) => state?.auth?.user);
+  // rating state
   const [rating, setRating] = useState(0);
+  // get reviews data from backend
   const { data: reviews } = useGetReviewsQuery(undefined);
+  // calculating average rating
   const averageRating = Number(calculateAverageRating(reviews?.data));
-
+  // post review function
   const [addReview] = useAddReviewMutation();
 
+  // post review functionality
   const handleReview = async (e: FieldValues) => {
     const toastId = toast.loading("Posting your review");
     e.preventDefault();
@@ -67,7 +72,6 @@ const ReviewForm = () => {
       </div>
 
       {/* Star Rating and Feedback Input */}
-
       <motion.div
         className="space-y-6"
         initial={{ opacity: 0, y: 50 }}

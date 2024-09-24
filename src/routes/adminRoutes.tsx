@@ -1,8 +1,8 @@
-import AdminDashboard from "../pages/admin/AdminDashboard";
-import BookingManagement from "../pages/admin/BookingManagement";
-import ServiceManagement from "../pages/admin/ServiceManagement";
-import SlotManagement from "../pages/admin/SlotManagement";
-import UserManagement from "../pages/admin/UserManagement";
+import AdminDashboard from "../pages/Admin/AdminDashboard";
+import BookingManagement from "../pages/Admin/BookingManagement";
+import ServiceManagement from "../pages/Admin/ServiceManagement";
+import SlotManagement from "../pages/Admin/SlotManagement";
+import UserManagement from "../pages/Admin/UserManagement";
 
 export const adminPaths = [
   {

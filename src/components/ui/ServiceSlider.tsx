@@ -7,6 +7,7 @@ import { TService } from "../../types";
 import ServiceCard from "./ServiceCard";
 
 const ServiceSlider = () => {
+  // get services data from backend
   const { data: services, isFetching } = useGetServicesQuery("");
 
   return (

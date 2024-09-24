@@ -2,6 +2,7 @@ import { Skeleton } from "antd";
 import { TService } from "../../types";
 import { Link } from "react-router-dom";
 
+// service card props types
 type TServiceCardProps = {
   service: TService;
   isFetching: boolean;

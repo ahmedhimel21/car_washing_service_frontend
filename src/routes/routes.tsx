@@ -9,7 +9,7 @@ import { publicPaths } from "./publicRoutes";
 import { routesGenerator } from "../utils/routesGenerator";
 import ProtectedRoutes from "../components/layouts/ProtectedRoutes";
 import MainLayout from "../components/layouts/MainLayout";
-import ErrorPage from "../pages/ErrorPage";
+import ErrorPage from "../pages/Global/ErrorPage";
 
 const router = createBrowserRouter([
   {

@@ -8,15 +8,19 @@ import { format } from "date-fns";
 import { useEffect, useRef, useState } from "react";
 
 const ServiceDetails = () => {
+  // selected slot state
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
-
+  // get id from params
   const { id } = useParams();
+  // present date format
   const date = format(new Date(), "yyy-MM-dd");
+  // get single service data
   const { data: service, isFetching, isLoading } = useGetSingleServiceQuery(id);
 
   // Fetch available slots for the selected date
   const { data: slots } = useGetAvailableSlotsQuery({ date, id });
 
+  // handling slot click and set to state
   const handleSlotClick = (slot: {
     startTime: string;
     endTime: string;
@@ -28,8 +32,8 @@ const ServiceDetails = () => {
   const slot = selectedSlot?.split(",")[0];
   const slotId = selectedSlot?.split(",")[1].trim();
 
+  //if click on slot the booking btn show by automatic scroll
   const bookingButtonRef = useRef<HTMLDivElement | null>(null);
-
   useEffect(() => {
     if (selectedSlot && bookingButtonRef.current) {
       bookingButtonRef.current.scrollIntoView({ behavior: "smooth" });

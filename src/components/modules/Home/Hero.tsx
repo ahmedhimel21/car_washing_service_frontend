@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+// import fadeIn functionality
 import { fadeIn } from "../../../utils/variants";
 import { Link } from "react-router-dom";
 
@@ -7,6 +8,7 @@ const Hero = () => {
     <div className="h-screen xl:h-[90vh] bg-[#b2b7c2]/10">
       <div className="container mx-auto h-full xl:pt-10">
         <div className="flex flex-col xl:flex-row justify-center items-center xl:justify-start h-full">
+          {/* left side description */}
           <div className="text-center xl:max-w-xl xl:text-left mt-16 xl:mt-0">
             <motion.h1
               variants={fadeIn("down", 0.2)}
@@ -39,6 +41,7 @@ const Hero = () => {
               </button>
             </motion.div>
           </div>
+          {/* right side image section */}
           <motion.div
             variants={fadeIn("up", 0.6)}
             initial="hidden"

@@ -7,8 +7,10 @@ import { fadeIn } from "../../utils/variants";
 import TestimonialCard from "./TestimonialCard";
 import { useGetReviewsQuery } from "../../redux/features/review/reviewEndpoints";
 import { TTestimonial } from "../../types";
+import { NavLink } from "react-router-dom";
 
 const TestimonialSlider = () => {
+  // get reviews data from backend
   const { data: reviews } = useGetReviewsQuery(undefined);
   return (
     <motion.div
@@ -26,6 +28,7 @@ const TestimonialSlider = () => {
         modules={[Pagination]}
         className="h-[450px] xl:h-[400px] mb-4"
       >
+        {/* testimonial card */}
         {reviews?.data?.slice(-2).map((person: TTestimonial) => {
           const { name, message, address, rating } = person;
           return (
@@ -41,7 +44,7 @@ const TestimonialSlider = () => {
         })}
       </Swiper>
       <button className="btn btn-accent btn-lg max-w-[168px] mx-auto">
-        See All Reviews
+        <NavLink to={"/reviews"}> See All Reviews</NavLink>
       </button>
     </motion.div>
   );

@@ -8,15 +8,17 @@ import { useEffect, useState } from "react";
 const { Header } = Layout;
 
 const Navigation = () => {
+  // get user info from local state
   const user = useAppSelector((state) => state.auth.user);
   const dispatch = useAppDispatch();
 
+  // logout functionality
   const handleLogout = () => {
     dispatch(logout());
   };
 
   const [header, serHeader] = useState(false);
-
+  // handle scroll for navigation
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 40) {
@@ -53,9 +55,11 @@ const Navigation = () => {
           theme="light"
           mode="horizontal"
           defaultSelectedKeys={["2"]}
+          // items array from main layout
           items={items}
           style={{ flex: 1, minWidth: 0 }}
         />
+        {/* conditionally rendering `dashboard, signIn and signOut` */}
         {user ? (
           <div className="flex justify-end gap-5 items-center flex-1">
             <NavLink to={`/${user?.role}/dashboard`}>Dashboard</NavLink>

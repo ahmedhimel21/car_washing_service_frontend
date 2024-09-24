@@ -2,6 +2,8 @@ import { FaPhone, FaEnvelope } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../utils/variants";
 import { Link } from "react-router-dom";
+import { FaLinkedin, FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -14,6 +16,7 @@ const Footer = () => {
           viewport={{ once: false, amount: 0.6 }}
           className="flex flex-col lg:flex-row lg:justify-between gap-x-5 gap-y-14"
         >
+          {/* desc and contact info */}
           <div className="flex flex-col flex-1 gap-y-8">
             <Link to="/" className="cursor-pointer">
               <img src="/logo.png" alt="logo" width={200} height={200} />
@@ -30,6 +33,20 @@ const Footer = () => {
                 <FaEnvelope></FaEnvelope>
                 <div className="font-medium">office@AquaClean.com</div>
               </div>
+            </div>
+            <div className="flex gap-3 mb-6">
+              <a href="https://www.facebook.com/profile.php?id=100073987913249">
+                <FaFacebook />
+              </a>
+              <a href="https://www.instagram.com/ahmed_himel21/">
+                <FaInstagram />
+              </a>
+              <a href="https://x.com/ahmed_himel21">
+                <FaXTwitter />
+              </a>
+              <a href="https://www.linkedin.com/in/sahabuddin-ahmed-4b243b245/">
+                <FaLinkedin />
+              </a>
             </div>
           </div>
           <div className=" flex-1 flex  flex-col xl:items-center">

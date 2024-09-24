@@ -1,8 +1,6 @@
-import CancelPage from "../components/ui/Cancel";
-import FailPage from "../components/ui/Fail";
-import SuccessPage from "../components/ui/Success";
-import Booking from "../pages/Booking";
+import Booking from "../pages/Booking/Booking";
 import Home from "../pages/Home";
+import Reviews from "../pages/Reviews";
 import ServiceDetails from "../pages/ServiceDetails";
 import Services from "../pages/Services";
 
@@ -18,6 +16,11 @@ export const publicPaths = [
     element: <ServiceDetails></ServiceDetails>,
   },
   {
+    name: "Reviews",
+    path: "reviews",
+    element: <Reviews></Reviews>,
+  },
+  {
     name: "Services",
     path: "services",
     element: <Services></Services>,
@@ -26,20 +29,5 @@ export const publicPaths = [
     name: "Booking",
     path: "booking/:id/:slot/:slotId",
     element: <Booking></Booking>,
-  },
-  {
-    name: "Success",
-    path: "payment/success",
-    element: <SuccessPage></SuccessPage>,
-  },
-  {
-    name: "Fail",
-    path: "payment/fail",
-    element: <FailPage></FailPage>,
-  },
-  {
-    name: "Success",
-    path: "payment/cancel",
-    element: <CancelPage></CancelPage>,
   },
 ];

@@ -9,12 +9,16 @@ import { useRegisterMutation } from "../../redux/features/auth/authEndpoints";
 import { toast } from "sonner";
 import { TError } from "../../types";
 
+// importing css
 import "./auth.css";
 
 const Register = () => {
-  const [register, { error }] = useRegisterMutation();
-  console.log("error =>", error);
+  // registration mutation
+  const [register] = useRegisterMutation();
+  // console.log( error?.data?.errorMessages[]);
+  // use navigate hook
   const navigate = useNavigate();
+  // handle registration fu
   const onSubmit = async (data: FieldValues) => {
     const toastId = toast.loading("User registration processing...");
     const userInfo = {
@@ -27,9 +31,11 @@ const Register = () => {
     };
     try {
       const res = await register(userInfo).unwrap();
+      console.log(res);
       navigate("/login");
       toast.success(res?.message, { id: toastId });
     } catch (err) {
+      console.log(err);
       toast.error((err as TError).data.message, { id: toastId });
     }
   };

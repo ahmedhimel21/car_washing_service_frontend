@@ -1,5 +1,5 @@
-import ManageProfile from "../pages/user/ManageProfile";
-import UserDashboard from "../pages/user/UserDashboard";
+import ManageProfile from "../pages/User/ManageProfile";
+import UserDashboard from "../pages/User/UserDashboard";
 
 export const userPaths = [
   {
