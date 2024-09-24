@@ -20,7 +20,12 @@ import CInput from "../../components/form/CInput";
 import { Controller, FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 import handleImageUpload from "../../utils/handleImageUpload";
-
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  serviceCreateValidationSchema,
+  serviceUpdateValidationSchema,
+} from "../../schemas/serviceCreateValidationSchema";
+//table types
 interface DataType {
   key: React.Key;
   name: string;
@@ -29,12 +34,13 @@ interface DataType {
 }
 
 const ServiceManagement = () => {
+  // get services data
   const { data: services, isFetching } = useGetServicesQuery("");
+  // delete service mutation
   const [deleteService] = useDeleteServiceMutation();
+  // delete confirmation functionalities
   const confirmDelete = async (_id: string) => {
-    // Call the delete function here, passing the serviceId
     const res = await deleteService(_id);
-    console.log(res);
     if (res?.data?.success) {
       message.success("Service deleted successfully");
     }
@@ -43,6 +49,7 @@ const ServiceManagement = () => {
   const cancelDelete = () => {
     message.info("Service deletion canceled");
   };
+  // forming table data
   const tableData = services?.data?.map(
     ({
       _id,
@@ -64,7 +71,7 @@ const ServiceManagement = () => {
       duration,
     })
   );
-
+  //table columns
   const columns: TableColumnsType<DataType> = [
     {
       title: "Name",
@@ -168,8 +175,8 @@ const UpdateServiceModal = ({
       const res = await updateService({ updateData, _id });
       if (res?.data?.success) {
         setIsModalOpen(false);
+        toast.success("Updated Successfully", { id: toastId });
       }
-      toast.success("Updated Successfully", { id: toastId });
     } catch (err) {
       toast.error("Something went wrong", { id: toastId });
     }
@@ -185,7 +192,10 @@ const UpdateServiceModal = ({
         onCancel={handleCancel}
         footer={null}
       >
-        <CForm onSubmit={onSubmit}>
+        <CForm
+          onSubmit={onSubmit}
+          resolver={zodResolver(serviceUpdateValidationSchema)}
+        >
           <CInput
             label="Name"
             name="name"
@@ -267,14 +277,20 @@ const CreateServiceModal = () => {
         onCancel={handleCancel}
         footer={null}
       >
-        <CForm onSubmit={onSubmit}>
+        <CForm
+          onSubmit={onSubmit}
+          resolver={zodResolver(serviceCreateValidationSchema)}
+        >
           <CInput label="Name" name="name" type="text"></CInput>
           <CInput label="Description" name="description" type="text"></CInput>
           <CInput label="Price" name="price" type="number"></CInput>
           <CInput label="Duration" name="duration" type="number"></CInput>
           <Controller
             name="image"
-            render={({ field: { onChange, value, ...field } }) => (
+            render={({
+              field: { onChange, value, ...field },
+              fieldState: { error },
+            }) => (
               <Form.Item label="Picture">
                 <Input
                   type="file"
@@ -282,6 +298,11 @@ const CreateServiceModal = () => {
                   {...field}
                   onChange={(e) => onChange(e.target.files?.[0])}
                 ></Input>
+                <div>
+                  {error && (
+                    <small style={{ color: "red" }}>{error.message}</small>
+                  )}
+                </div>
               </Form.Item>
             )}
           ></Controller>

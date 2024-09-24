@@ -1,3 +1,5 @@
+import { toast } from "sonner";
+
 const handleImageUpload = async (file: string | Blob) => {
   const secretKey = import.meta.env.VITE_IMGBB_KEY;
 
@@ -15,7 +17,7 @@ const handleImageUpload = async (file: string | Blob) => {
     const data = await response.json();
     return data?.data;
   } catch (err) {
-    console.log(err);
+    toast.error("Failed to upload image");
   }
 };
 export default handleImageUpload;

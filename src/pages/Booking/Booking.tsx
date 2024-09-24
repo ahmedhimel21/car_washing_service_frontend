@@ -36,7 +36,6 @@ const Booking = () => {
   const [createBooking] = useCreateBookingMutation();
 
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
     const toastId = toast.loading("Booking on processing...");
     const formData = {
       cus_name: data.name,

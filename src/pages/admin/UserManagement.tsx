@@ -98,12 +98,10 @@ const UserManagement = () => {
     try {
       const res = await updateUserRole(id);
       if (res?.data?.success) {
-        console.log(true);
         toast.success("User role update successfully", { id: toastId });
       }
     } catch (err) {
       toast.error("Something went wrong", { id: toastId });
-      console.log(err);
     }
   };
 

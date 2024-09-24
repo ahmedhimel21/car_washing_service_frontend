@@ -12,8 +12,12 @@ import CSelect from "../../components/form/CSelect";
 import { toast } from "sonner";
 import { useGetServicesQuery } from "../../redux/features/services/servicesEndpoints";
 import CDatePicker from "../../components/form/CDatePicker";
-import { format } from "date-fns";
 import CTimePicker from "../../components/form/CTimePicker";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  slotCreateValidationSchema,
+  slotUpdateStatusValidationSchema,
+} from "../../schemas/slotValidationSchema";
 
 interface DataType {
   key: React.Key;
@@ -23,8 +27,9 @@ interface DataType {
 }
 
 const SlotManagement = () => {
+  //get slots data
   const { data: slots, isFetching } = useGetAllSlotsQuery(undefined);
-
+  //table data
   const tableData = slots?.data?.map(
     ({
       _id,
@@ -51,6 +56,7 @@ const SlotManagement = () => {
       };
     }
   );
+  //table columns
   const columns: TableColumnsType<DataType> = [
     {
       title: "Service Name",
@@ -102,6 +108,7 @@ const SlotManagement = () => {
 
   return (
     <div>
+      {/* table */}
       <Table
         loading={isFetching}
         pagination={false}
@@ -119,7 +126,13 @@ const SlotManagement = () => {
 const UpdateStatusModal = ({
   data,
 }: {
-  data: { _id: string; date: string; startTime: string; endTime: string };
+  data: {
+    _id: string;
+    date: string;
+    startTime: string;
+    endTime: string;
+    isBooked: string;
+  };
 }) => {
   const [updateSlot] = useUpdateSlotMutation();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -150,14 +163,19 @@ const UpdateStatusModal = ({
         setIsModalOpen(false);
         toast.success("Updated Successfully", { id: toastId });
       }
-      console.log(res);
     } catch (err) {
       toast.error("Something went wrong", { id: toastId });
     }
   };
   return (
     <>
-      <button onClick={showModal} className="btn btn-accent h-11 max-w-[150px]">
+      <button
+        disabled={data?.isBooked === "booked"}
+        onClick={showModal}
+        className={`btn btn-accent h-11 max-w-[150px] ${
+          data?.isBooked === "booked" ? "opacity-80" : ""
+        }`}
+      >
         Update Status
       </button>
       <Modal
@@ -166,7 +184,10 @@ const UpdateStatusModal = ({
         onCancel={handleCancel}
         footer={null}
       >
-        <CForm onSubmit={onSubmit}>
+        <CForm
+          onSubmit={onSubmit}
+          resolver={zodResolver(slotUpdateStatusValidationSchema)}
+        >
           <CSelect
             label="Status"
             name="isBooked"
@@ -207,21 +228,18 @@ const CreateSlotsModal = () => {
 
   const onSubmit = async (value: FieldValues) => {
     const toastId = toast.loading("Slots creating...");
-    const formattedDate = format(new Date(value?.date), "yyyy-MM-dd");
-    const formattedStartTime = format(new Date(value?.startTime), "HH:mm");
-    const formattedEndTime = format(new Date(value?.endTime), "HH:mm");
     const createSlotsData = {
       service: value?.service,
-      date: formattedDate,
-      startTime: formattedStartTime,
-      endTime: formattedEndTime,
+      date: value?.date,
+      startTime: value?.startTime,
+      endTime: value?.endTime,
     };
     try {
       const res = await createSlots(createSlotsData);
       if (res?.data?.success) {
         setIsModalOpen(false);
+        toast.success("Slots created successfully", { id: toastId });
       }
-      toast.success("Slots created successfully", { id: toastId });
     } catch (err) {
       toast.error("Something went wrong", { id: toastId });
     }
@@ -240,7 +258,10 @@ const CreateSlotsModal = () => {
         onCancel={handleCancel}
         footer={null}
       >
-        <CForm onSubmit={onSubmit}>
+        <CForm
+          onSubmit={onSubmit}
+          resolver={zodResolver(slotCreateValidationSchema)}
+        >
           <CSelect
             label="Name"
             name="service"

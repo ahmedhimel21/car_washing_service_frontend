@@ -4,7 +4,6 @@ const servicesEndpoints = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     createService: builder.mutation({
       query: (args) => {
-        console.log(args);
         return {
           url: "/api/services",
           method: "POST",
@@ -28,6 +27,7 @@ const servicesEndpoints = baseApi.injectEndpoints({
         if (sort) {
           params.append("sort", sort.sort);
         }
+        params.append("isDeleted", "false");
         return {
           url: "/api/services",
           method: "GET",
@@ -56,7 +56,6 @@ const servicesEndpoints = baseApi.injectEndpoints({
     }),
     deleteService: builder.mutation({
       query: (_id) => {
-        console.log(_id);
         return {
           url: `/api/services/${_id}`,
           method: "DELETE",

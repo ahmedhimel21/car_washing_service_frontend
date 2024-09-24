@@ -28,11 +28,9 @@ const ManageProfile = () => {
         dispatch(logout());
         navigate("/login");
       }
-      console.log(res);
     } catch (err) {
       toast.error("Something went wrong");
     }
-    console.log(value);
   };
   return (
     <div className="flex flex-col max-w-[50%] mx-auto bg-white p-8 rounded-lg shadow-lg">

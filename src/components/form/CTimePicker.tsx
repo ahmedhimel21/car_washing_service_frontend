@@ -1,5 +1,6 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { Form, TimePicker } from "antd";
+import dayjs from "dayjs";
 
 type TCTimePicker = {
   name: string;
@@ -22,6 +23,10 @@ const CTimePicker = ({ name, label }: TCTimePicker) => {
                 size="large"
                 style={{ width: "100%" }}
                 format="HH:mm"
+                value={field.value ? dayjs(field.value, "HH:mm") : null} // Use dayjs for value
+                onChange={(time) => {
+                  field.onChange(time ? time.format("HH:mm") : null); // Convert to string for form state
+                }}
               />
               {error && <small style={{ color: "red" }}>{error.message}</small>}
             </Form.Item>

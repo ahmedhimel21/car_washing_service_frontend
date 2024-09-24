@@ -30,6 +30,15 @@ const bookingEndpoints = baseApi.injectEndpoints({
       },
       providesTags: ["booking"],
     }),
+    getMostBookedService: builder.query({
+      query: () => {
+        return {
+          url: "/api/most-booked-services",
+          method: "GET",
+        };
+      },
+      providesTags: ["booking"],
+    }),
   }),
 });
 
@@ -37,4 +46,5 @@ export const {
   useCreateBookingMutation,
   useGetAllBookingQuery,
   useGetUserBookingQuery,
+  useGetMostBookedServiceQuery,
 } = bookingEndpoints;

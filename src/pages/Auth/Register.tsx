@@ -15,7 +15,6 @@ import "./auth.css";
 const Register = () => {
   // registration mutation
   const [register] = useRegisterMutation();
-  // console.log( error?.data?.errorMessages[]);
   // use navigate hook
   const navigate = useNavigate();
   // handle registration fu
@@ -31,11 +30,9 @@ const Register = () => {
     };
     try {
       const res = await register(userInfo).unwrap();
-      console.log(res);
       navigate("/login");
       toast.success(res?.message, { id: toastId });
     } catch (err) {
-      console.log(err);
       toast.error((err as TError).data.message, { id: toastId });
     }
   };

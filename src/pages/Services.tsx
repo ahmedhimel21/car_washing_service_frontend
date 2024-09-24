@@ -9,7 +9,6 @@ const Services = () => {
   const [minPrice, setMinPrice] = useState<number | undefined>(undefined);
   const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
   const [sort, setSort] = useState({});
-  console.log(sort);
 
   const { data: services, isFetching } = useGetServicesQuery({
     searchTerm,
