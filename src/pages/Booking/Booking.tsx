@@ -54,6 +54,7 @@ const Booking = () => {
       const res = await createBooking(formData);
       if (res?.data?.success) {
         toast.success("Payment successful", { id: toastId });
+        navigate(`/${user?.role}/dashboard`);
         window.open(res?.data?.data?.payment_url, "_self");
       }
       if (!(res?.error as any).data?.success) {
