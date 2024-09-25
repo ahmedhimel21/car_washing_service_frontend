@@ -55,7 +55,6 @@ const Booking = () => {
       if (res?.data?.success) {
         toast.success("Payment successful", { id: toastId });
         window.open(res?.data?.data?.payment_url, "_self");
-        navigate(`/${user?.role}/dashboard`);
       }
       if (!(res?.error as any).data?.success) {
         toast.error("Failed payment, Please try agin", { id: toastId });

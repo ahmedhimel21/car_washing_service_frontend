@@ -35,9 +35,11 @@ const ReviewForm = () => {
     };
     try {
       const res = await addReview(reviewData);
-      toast.success(res.data.message, { id: toastId });
-      e.target.message.value = "";
-      setRating(0);
+      if (res?.data?.success) {
+        toast.success(res.data.message, { id: toastId });
+        e.target.message.value = "";
+        setRating(0);
+      }
     } catch (err) {
       toast.error("Failed to create review");
     }
@@ -90,6 +92,7 @@ const ReviewForm = () => {
         </div>
         <form onSubmit={handleReview}>
           <textarea
+            required={true}
             placeholder="Leave your feedback"
             className="w-full p-4 border-2 border-gray-200 rounded-md focus:outline-none focus:border-accent"
             name="message"

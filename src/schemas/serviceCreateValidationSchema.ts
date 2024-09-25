@@ -25,6 +25,6 @@ export const serviceCreateValidationSchema = z.object({
 export const serviceUpdateValidationSchema = z.object({
   name: z.string({ required_error: "name field is required" }),
   description: z.string({ required_error: "description field is required" }),
-  price: z.string({ required_error: "price field is required" }),
-  duration: z.string({ required_error: "duration field is required" }),
+  price: z.any({ required_error: "price field is required" }),
+  duration: z.any({ required_error: "duration field is required" }),
 });

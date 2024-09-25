@@ -211,13 +211,13 @@ const UpdateServiceModal = ({
           <CInput
             label="Price"
             name="price"
-            type="number"
+            type="text"
             initialValue={price}
           ></CInput>
           <CInput
             label="Duration"
             name="duration"
-            type="number"
+            type="text"
             initialValue={duration}
           ></CInput>
           <button type="submit" className="btn btn-accent btn-lg">
