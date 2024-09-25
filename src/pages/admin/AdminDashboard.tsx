@@ -1,35 +1,54 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useGetMostBookedServiceQuery } from "../../redux/features/booking/bookingEndpoints";
 import { useAppSelector } from "../../redux/hooks";
-import { Bar } from "@ant-design/plots";
+import { Column } from "@ant-design/plots";
 
 const AdminDashboard = () => {
   const { data: bookings } = useGetMostBookedServiceQuery(undefined);
-  const data = bookings?.data;
+  console.log(bookings);
+
+  // Process the data to count bookings for each service
+  const serviceBookingCount = bookings?.data?.reduce(
+    (acc: any, booking: any) => {
+      const serviceName = booking?.serviceName; // Assuming service has a name field
+      if (!acc[serviceName]) {
+        acc[serviceName] = 0;
+      }
+      acc[serviceName]++;
+      return acc;
+    },
+    {}
+  );
+
+  let formattedData;
+  if (serviceBookingCount) {
+    formattedData = Object.entries(serviceBookingCount)?.map(
+      ([service, count]) => ({
+        service,
+        bookings: count,
+      })
+    );
+  }
+
   // Define chart config
   const config = {
-    data,
-    xField: "count",
-    yField: "serviceName",
-    seriesField: "serviceName",
-    colorField: "serviceName",
-    legend: true,
+    data: formattedData,
+    xField: "service",
+    yField: "bookings",
+    color: "#1890ff",
+    columnStyle: {
+      radius: [5, 5, 0, 0],
+    },
     label: {
       position: "middle",
       style: {
-        fill: "#FFFFFF",
+        fill: "#fff",
         opacity: 0.6,
       },
     },
     meta: {
-      count: { alias: "Number of Bookings" },
-    },
-    tooltip: {
-      showTitle: false,
-      formatter: (datum: any) => ({
-        name: datum.serviceName,
-        value: `${datum.count} bookings`,
-      }),
+      service: { alias: "Service Name" },
+      bookings: { alias: "Number of Bookings" },
     },
   };
 
@@ -40,7 +59,7 @@ const AdminDashboard = () => {
         Welcome Back {user?.name}
       </h1>
       <div>
-        <Bar {...config} />
+        <Column {...config} />
       </div>
     </div>
   );
