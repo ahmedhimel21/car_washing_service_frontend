@@ -33,7 +33,7 @@ const ManageProfile = () => {
     }
   };
   return (
-    <div className="flex flex-col max-w-[50%] mx-auto bg-white p-8 rounded-lg shadow-lg">
+    <div className="flex flex-col max-w-[50%] mx-auto  p-8 rounded-lg">
       <div className="w-full text-center">
         <div className="flex-grow mt-3 space-y-3">
           <h3 className="text-lg uppercase font-bold mb-1 text-black">

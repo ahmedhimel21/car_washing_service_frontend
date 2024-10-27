@@ -78,7 +78,7 @@ const ServiceComparison = () => {
       <div className="text-center">
         <button
           onClick={handleCompare}
-          className="btn btn-accent h-12 max-w-[168px] mx-auto mt-8"
+          className="btn btn-accent h-12 max-w-[168px] mx-auto mt-12"
         >
           Compare Services
         </button>
@@ -145,11 +145,11 @@ const ServiceComparison = () => {
                       </td>
                     ))}
                   </tr>
-                  <tr>
+                  {/* <tr>
                     <td className="border px-4 py-2 font-medium text-gray-700">
                       Features
                     </td>
-                    {/* {selectedServices.map((id) => (
+                    {selectedServices.map((id) => (
                       <td key={id} className="border px-4 py-2 text-gray-600">
                         <ul className="list-disc list-inside">
                           {services
@@ -159,8 +159,8 @@ const ServiceComparison = () => {
                             ))}
                         </ul>
                       </td>
-                    ))} */}
-                  </tr>
+                    ))}
+                  </tr> */}
                 </tbody>
               </table>
             </div>

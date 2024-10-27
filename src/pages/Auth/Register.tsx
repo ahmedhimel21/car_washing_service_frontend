@@ -11,6 +11,7 @@ import { TError } from "../../types";
 
 // importing css
 import "./auth.css";
+import { FaBackward } from "react-icons/fa";
 
 const Register = () => {
   // registration mutation
@@ -38,8 +39,12 @@ const Register = () => {
   };
   return (
     <div className="login-page-container">
-      <NavLink to="/" className="logo-container">
-        <img src={"/logo.png"} alt="Logo" className="logo" />
+      <NavLink
+        to="/"
+        className="logo-container flex justify-center items-center"
+      >
+        <img src={"/logo.png"} alt="Logo" className="logo" />{" "}
+        <FaBackward></FaBackward>{" "}
       </NavLink>
       <Row className="login-page" style={{ minHeight: "100vh" }}>
         {/* Left Section - Sign up Form */}

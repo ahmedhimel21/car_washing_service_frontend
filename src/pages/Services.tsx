@@ -34,7 +34,7 @@ const Services = () => {
         <div className="h-full xl:h-full">
           <div className="container mx-auto xl:pt-10">
             {/* Search, Filter, and Sort Section */}
-            <div className="mt-24 xl:mt-16 flex flex-col md:flex-row justify-between items-center py-6 bg-gradient-to-r from-[#ff416c] to-[#ff4b2b] text-white p-4 rounded-lg shadow-lg">
+            <div className="mt-0 xl:mt-16 flex flex-col md:flex-row justify-between items-center py-6 bg-gradient-to-r from-[#ff416c] to-[#ff4b2b] text-white p-4 rounded-lg shadow-lg">
               {/* Search Input */}
               <input
                 type="text"
