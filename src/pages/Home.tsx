@@ -7,6 +7,7 @@ import Review from "../components/modules/Home/Review";
 import BackToTopBtn from "../components/ui/BackToTopBtn";
 import AboutUs from "../components/modules/Home/AboutUs";
 import WhyChooseUs from "../components/modules/Home/WhyChooseUs";
+import ServiceComparison from "../components/modules/Home/ServiceComparision";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
       <AboutUs></AboutUs>
       <FeaturedServices></FeaturedServices>
       <WhyChooseUs></WhyChooseUs>
+      <ServiceComparison></ServiceComparison>
       <Review></Review>
       <Testimonial></Testimonial>
       <Footer></Footer>

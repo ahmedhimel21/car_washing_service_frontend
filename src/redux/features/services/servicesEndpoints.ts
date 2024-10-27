@@ -36,6 +36,15 @@ const servicesEndpoints = baseApi.injectEndpoints({
       },
       providesTags: ["services"],
     }),
+    getServicesComparison: builder.query({
+      query: () => {
+        return {
+          url: "/api/services",
+          method: "GET",
+        };
+      },
+      providesTags: ["services"],
+    }),
     getSingleService: builder.query({
       query: (id) => {
         return {
@@ -72,4 +81,5 @@ export const {
   useUpdateServiceMutation,
   useDeleteServiceMutation,
   useCreateServiceMutation,
+  useGetServicesComparisonQuery,
 } = servicesEndpoints;

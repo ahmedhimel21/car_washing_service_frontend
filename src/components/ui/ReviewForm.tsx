@@ -45,7 +45,7 @@ const ReviewForm = () => {
     }
   };
   return (
-    <div className="relative bg-white p-8 rounded-lg shadow-lg max-w-[800px] mx-auto">
+    <div className="relative bg-white p-8 rounded-lg shadow-lg mx-auto">
       {/* Black Overlay if not logged in */}
       {!user && (
         <div className="absolute inset-0 bg-black bg-opacity-70 z-10 flex justify-center items-center rounded-md">
@@ -97,7 +97,10 @@ const ReviewForm = () => {
             className="w-full p-4 border-2 border-gray-200 rounded-md focus:outline-none focus:border-accent"
             name="message"
           />
-          <button type="submit" className="btn btn-accent w-full h-12 mt-5">
+          <button
+            type="submit"
+            className="btn btn-accent w-2/6 mx-auto h-12 mt-5"
+          >
             Submit Review
           </button>
         </form>
