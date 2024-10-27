@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <div className="h-screen xl:h-[90vh] bg-[#b2b7c2]/10">
       <div className="container mx-auto h-full xl:pt-10">
-        <div className="flex flex-col xl:flex-row justify-center items-center xl:justify-start h-full">
+        <div className="flex flex-col xl:flex-row justify-center items-center xl:justify-start h-full gap-y-10 xl:gap-y-0">
           {/* left side description */}
           <div className="text-center xl:max-w-xl xl:text-left mt-16 xl:mt-0">
             <motion.h1
