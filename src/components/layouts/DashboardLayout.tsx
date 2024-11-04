@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Layout, Menu } from "antd";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { adminPaths } from "../../routes/adminRoutes";
 import { sidebarItemsGenerator } from "../../utils/sidebarItemsGenerator";
 import { userPaths } from "../../routes/userRoutes";
@@ -47,9 +47,11 @@ const DashboardLayout = () => {
             alignItems: "center",
           }}
         >
-          <h1 className="text-xl font-bold text-white text-center">
-            AquaClean
-          </h1>
+          <Link to="/">
+            <h1 className="text-xl font-bold text-white text-center">
+              AquaClean
+            </h1>
+          </Link>
         </div>
         <Menu
           theme="dark"

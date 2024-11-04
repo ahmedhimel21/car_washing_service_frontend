@@ -14,6 +14,10 @@ const NavbarMenuItems = () => {
       label: <NavLink to="/services">Services</NavLink>,
     },
     {
+      key: "WeCares",
+      label: <NavLink to="/environment">We Cares</NavLink>,
+    },
+    {
       key: "Reviews",
       label: <NavLink to="/reviews">Reviews</NavLink>,
     },

@@ -20,13 +20,13 @@ const ServiceCard = ({ service, isFetching }: TServiceCardProps) => {
         <div className="flex-grow">
           <h3 className="text-lg uppercase font-bold mb-1">{service?.name}</h3>
           <h3 className="text-[13px] text-secondary uppercase mb-1 truncate">
-            {service?.description}
+            {service?.description.slice(0, 150)}...
           </h3>
           <div className="flex justify-between items-center">
-            <h3 className="mb-10 text-accent font-semibold uppercase">
+            <h3 className="mb-10 text-xl text-accent font-bold uppercase">
               $ {service?.price}
             </h3>
-            <h3 className="mb-10 text-accent font-semibold uppercase">
+            <h3 className="mb-10 text-xl text-accent font-bold uppercase">
               🕝{service?.duration}
             </h3>
           </div>

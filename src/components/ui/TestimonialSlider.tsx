@@ -29,7 +29,7 @@ const TestimonialSlider = () => {
         className="h-[450px] xl:h-[400px] mb-4"
       >
         {/* testimonial card */}
-        {reviews?.data?.slice(-2).map((person: TTestimonial) => {
+        {reviews?.data?.slice(-6).map((person: TTestimonial) => {
           const { name, message, address, rating } = person;
           return (
             <SwiperSlide key={person._id}>

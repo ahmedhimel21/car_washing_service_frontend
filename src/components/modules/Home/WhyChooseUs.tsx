@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const WhyChooseUs = () => {
   return (
-    <section className="why-choose-us bg-white py-16">
+    <section className="why-choose-us bg-white pt-24 xl:pt-24">
       <div className="container mx-auto px-6 md:px-12 text-center">
         <h2 className="text-4xl font-bold text-gray-800 mb-8">Why Choose Us</h2>
 

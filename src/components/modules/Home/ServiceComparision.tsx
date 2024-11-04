@@ -34,7 +34,7 @@ const ServiceComparison = () => {
   };
 
   return (
-    <section className="service-comparison py-8 px-4 lg:px-0">
+    <section className="service-comparison px-4 lg:px-0 pt-24 xl:pt-24">
       <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
         Compare Services
       </h2>
@@ -145,22 +145,22 @@ const ServiceComparison = () => {
                       </td>
                     ))}
                   </tr>
-                  {/* <tr>
+                  <tr>
                     <td className="border px-4 py-2 font-medium text-gray-700">
                       Features
                     </td>
                     {selectedServices.map((id) => (
                       <td key={id} className="border px-4 py-2 text-gray-600">
                         <ul className="list-disc list-inside">
-                          {services
-                            .find((s) => s.id === id)
-                            ?.features.map((feature, index) => (
+                          {services?.data
+                            .find((s: any) => s._id === id)
+                            ?.features.map((feature: any, index: any) => (
                               <li key={index}>{feature}</li>
                             ))}
                         </ul>
                       </td>
                     ))}
-                  </tr> */}
+                  </tr>
                 </tbody>
               </table>
             </div>

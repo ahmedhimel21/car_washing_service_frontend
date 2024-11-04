@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Card } from "antd";
 import { useGetMostBookedServiceQuery } from "../../redux/features/booking/bookingEndpoints";
 import { useAppSelector } from "../../redux/hooks";
@@ -34,80 +33,63 @@ const AdminDashboard = () => {
       service: { alias: "Service Name" },
       bookings: { alias: "Number of Bookings" },
     },
+    height: 300, // Control chart height
   };
 
   const user = useAppSelector((state) => state.auth.user);
+
   return (
-    <div className="flex justify-center items-center">
-      <div>
-        <h1 className="text-2xl font-bold text-center mb-6">
-          Welcome Back {user?.name}
-        </h1>
-        <div className="flex flex-wrap gap-6">
-          {/* Active Users Card */}
-          <div className="w-full sm:w-1/2 lg:w-1/4">
-            <Card className="bg-gradient-to-r from-blue-600 to-teal-500 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
-              <div className="p-6">
-                <div className="flex items-center">
-                  <FaUsers className="text-5xl mr-4 text-yellow-200" />
-                  <div>
-                    <h3 className="text-xl font-bold">Active Users</h3>
-                    <p className="text-lg text-white">{12}</p>
-                  </div>
-                </div>
-              </div>
-            </Card>
+    <div className="flex flex-col items-center px-4 py-8">
+      <h1 className="text-2xl font-semibold mb-8 text-center">
+        Welcome Back, {user?.name}
+      </h1>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 w-full">
+        {/* Cards */}
+        <Card className="bg-gradient-to-r from-teal-600 to-blue-500 text-white shadow-lg transform transition-transform duration-300 hover:scale-105 p-4">
+          <div className="flex items-center">
+            <FaUsers className="text-4xl text-yellow-200" />
+            <div className="ml-4">
+              <h3 className="text-lg font-semibold">Active Users</h3>
+              <p className="text-white text-sm">{10}</p>
+            </div>
           </div>
+        </Card>
 
-          {/* Total Posts Card */}
-          <div className="w-full sm:w-1/2 lg:w-1/4">
-            <Card className="bg-gradient-to-r from-purple-600 to-indigo-500 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
-              <div className="p-6">
-                <div className="flex items-center">
-                  <FaFileAlt className="text-5xl mr-4 text-yellow-200" />
-                  <div>
-                    <h3 className="text-xl font-bold">Total Services</h3>
-                    <p className="text-lg text-white">{8}</p>
-                  </div>
-                </div>
-              </div>
-            </Card>
+        <Card className="bg-gradient-to-r from-teal-600 to-blue-500 text-white shadow-lg transform transition-transform duration-300 hover:scale-105 p-4">
+          <div className="flex items-center">
+            <FaFileAlt className="text-4xl text-yellow-200" />
+            <div className="ml-4">
+              <h3 className="text-lg font-semibold">Total Services</h3>
+              <p className="text-white text-sm">{9}</p>
+            </div>
           </div>
+        </Card>
 
-          {/* Total Payments Card */}
-          <div className="w-full sm:w-1/2 lg:w-1/4">
-            <Card className="bg-gradient-to-r from-green-600 to-emerald-500 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
-              <div className="p-6">
-                <div className="flex items-center">
-                  <FaMoneyBillWave className="text-5xl mr-4 text-yellow-200" />
-                  <div>
-                    <h3 className="text-xl font-bold">Total Payments</h3>
-                    <p className="text-lg text-white">{8000}</p>
-                  </div>
-                </div>
-              </div>
-            </Card>
+        <Card className="bg-gradient-to-r from-teal-600 to-blue-500 text-white shadow-lg transform transition-transform duration-300 hover:scale-105 p-4">
+          <div className="flex items-center">
+            <FaMoneyBillWave className="text-4xl text-yellow-200" />
+            <div className="ml-4">
+              <h3 className="text-lg font-semibold">Total Payments</h3>
+              <p className="text-white text-sm">{1890}</p>
+            </div>
           </div>
+        </Card>
 
-          {/* Monthly Activity Card */}
-          <div className="w-full sm:w-1/2 lg:w-1/4">
-            <Card className="bg-gradient-to-r from-teal-600 to-blue-500 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
-              <div className="p-6">
-                <div className="flex items-center">
-                  <FaChartLine className="text-5xl mr-4 text-yellow-200" />
-                  <div>
-                    <h3 className="text-xl font-bold">Monthly Activity</h3>
-                    <p className="text-lg text-white">{12}</p>
-                  </div>
-                </div>
-              </div>
-            </Card>
+        <Card className="bg-gradient-to-r from-teal-600 to-blue-500 text-white shadow-lg transform transition-transform duration-300 hover:scale-105 p-4">
+          <div className="flex items-center">
+            <FaChartLine className="text-4xl text-yellow-200" />
+            <div className="ml-4">
+              <h3 className="text-lg font-semibold">Monthly Activity</h3>
+              <p className="text-white text-sm">{10}</p>
+            </div>
           </div>
-        </div>
-        <div className="mt-12">
-          <Column {...config} />
-          <p className="text-center">Booking progress Chart</p>
-        </div>
+        </Card>
+      </div>
+
+      {/* Chart Section */}
+      <div className="w-full mt-8">
+        <Column {...config} />
+        <p className="text-center text-sm mt-2">Booking Progress Chart</p>
       </div>
     </div>
   );

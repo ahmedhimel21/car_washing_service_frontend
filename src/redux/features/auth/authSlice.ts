@@ -7,6 +7,7 @@ type TUser = {
   name: string;
   phone: string;
   role: string;
+  image?: string;
   updatedAt: string;
   _id: string;
 };

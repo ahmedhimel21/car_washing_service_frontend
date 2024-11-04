@@ -1,4 +1,5 @@
 import Booking from "../pages/Booking/Booking";
+import EnvironmentalPage from "../pages/EnvironmentPage";
 import Home from "../pages/Home";
 import Reviews from "../pages/Reviews";
 import ServiceDetails from "../pages/ServiceDetails";
@@ -14,6 +15,11 @@ export const publicPaths = [
     name: "Service Details",
     path: "services/:id",
     element: <ServiceDetails></ServiceDetails>,
+  },
+  {
+    name: "We Cares",
+    path: "environment",
+    element: <EnvironmentalPage></EnvironmentalPage>,
   },
   {
     name: "Reviews",

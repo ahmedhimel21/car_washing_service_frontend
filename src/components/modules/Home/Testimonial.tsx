@@ -2,7 +2,7 @@ import TestimonialSlider from "../../ui/TestimonialSlider";
 
 const Testimonial = () => {
   return (
-    <div className="section flex items-center overflow-hidden">
+    <div className="pt-16 xl:pt-24">
       {" "}
       <div className="container mx-auto">
         <TestimonialSlider></TestimonialSlider>

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const AboutUs = () => {
   return (
-    <section className="about-us bg-gray-50 py-16">
+    <section className="about-us bg-gray-50 xl:pt-32">
       <div className="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center">
         {/* Text Section */}
         <motion.div
@@ -46,7 +46,7 @@ const AboutUs = () => {
 
         {/* Image Section */}
         <motion.div
-          className="image-section md:w-1/2 mt-10 md:mt-0 flex justify-center"
+          className="image-section md:w-1/2 mt-10 md:mt-0 flex justify-end"
           initial="hidden"
           animate="visible"
           variants={imageVariants}

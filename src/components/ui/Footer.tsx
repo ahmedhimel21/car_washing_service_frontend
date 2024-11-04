@@ -7,7 +7,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="pt-20 bg-white z-20">
+    <footer className="pt-16 xl:pt-24 bg-white z-20">
       <div className="container mx-auto">
         <motion.div
           variants={fadeIn("up", 0)}
